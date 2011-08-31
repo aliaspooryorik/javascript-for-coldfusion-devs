@@ -7,10 +7,10 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
-	<title>Getting Started with deck.js</title>
+	<title>JavaScript for ColdFusion Developers</title>
 	
-	<meta name="description" content="A jQuery library for modern HTML presentations">
-	<meta name="author" content="Caleb Troughton">
+	<meta name="description" content="A presentation on JavaScript fundamentals for ColdFusion developers.">
+	<meta name="author" content="Ryan Anklam">
 	<meta name="viewport" content="width=1024, user-scalable=no">
 	
 
@@ -36,80 +36,102 @@
 
 <body class="deck-container" onload="prettyPrint()">
 
-<div class="theme-menu">
-	<h2>Themes</h2>	
-	
-	<label for="style-themes">Style:</label>
-	<select id="style-themes">
-		<option selected value="themes/style/web-2.0.css">Web 2.0</option>
-		<option value="themes/style/swiss.css">Swiss</option>
-		<option value="themes/style/neon.css">Neon</option>
-		<option value="">None</option>
-	</select>
-	
-	<label for="transition-themes">Transition:</label>
-	<select id="transition-themes">
-		<option selected value="themes/transition/horizontal-slide.css">Horizontal Slide</option>
-		<option value="themes/transition/vertical-slide.css">Vertical Slide</option>
-		<option value="themes/transition/fade.css">Fade</option>
-		<option value="">None</option>
-	</select>
-</div>
-
 <div class="slide" id="title-slide">
-	<h1>Getting Started with deck.js</h1>
+	<h1>JavaScript for ColdFusion Developers</h1>
 </div>
 
-<div class="slide" id="how-to-overview">
-	<h2>How to Make a Deck</h2>
+<div class="slide" id="about-me">
+<h2>About me</h2>
+<p>Do you really care? If you really want to know here's all you'll need: <a href="http://www.google.com/search?q=ryan+anklam">http://www.google.com/search?q=ryan+anklam</a></p>
+<p>Here's a lol cat instead:</p>
+<img src="images/lolcats-computer-with-balloon.jpg">
+</div>
+
+<div class="slide" id="introduction">
+	<h2>Introduction</h2>
+	<p>
+		JavaScript and ColdFusion may have more in common than you may think.  In this session I'll walk you through many of the fundamentals of JavaScript and how many concepts relate to the language you love and already know, ColdFusion.  
+	</p>
+	<p>
+		<h3>JavaScript Objects &amp; ColdFusion Structs.</h3>
+		<h4>ColdFusion</h4>
+		<pre><code class="prettyprint">var obj = {
+	key = &quot;value&quot;,
+	foo = &quot;Bar&quot;,
+}</code></pre>
+		<h4>JavaScript</h4>
+		<pre><code class="prettyprint">var obj = {
+	key : &quot;value&quot;,
+	foo : &quot;bar&quot;
+}</code></pre>
+</p>
+</div>
+
+<div class="slide" id="what-well-cover">
+	<h2>What we'll cover</h2>
 	<ol>
 		<li>
-			<h3>Write Slides</h3>
-			<p>Slide content is simple&nbsp;HTML.</p>
+			<h3>Variables</h3>
 		</li>
 		<li>
-			<h3>Choose Themes</h3>
-			<p>One for slide styles and one for deck&nbsp;transitions.</p>
+			<h3>Arrays</h3>
 		</li>
 		<li>
-			<h3>Include Extensions</h3>
-			<p>Add extra functionality to your deck, or leave it stripped&nbsp;down.</p>
+			<h3>Functions</h3>
+		</li>
+		<li>
+			<h3>Objects</h3>
+		</li>
+		<li>
+			<h3>Resources</h3>
 		</li>
 	</ol>
 </div>
 
-<div class="slide" id="markup">
-	<h2>The Markup</h2>
-	<p>Slides are just HTML elements with a class of <code>slide</code>.</p>
-	<pre><code class="prettyprint">&lt;div class=&quot;slide&quot;&gt;
-   &lt;h2&gt;How to Make a Deck&lt;/h2&gt;
-   &lt;ol&gt;
-      &lt;li&gt;
-         &lt;h3&gt;Write Slides&lt;/h3&gt;
-         &lt;p&gt;Slide content is simple HTML.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-         &lt;h3&gt;Choose Themes&lt;/h3&gt;
-         &lt;p&gt;One for slide styles and one for deck transitions.&lt;/p&gt;
-      &lt;/li&gt;
-      &hellip;
-   &lt;/ol&gt;
-&lt;/div&gt;</code></pre>
-CFML
-<pre><code class="prettyprint">
-	var myStruct = {foo=&quot;FOO&quot;,bar=&quot;BAR&quot;};
-</code>
-</pre>
+<div class="slide" id="variables">
+	<h2>Variables</h2>
+	<p>Variables in ColdFusion and JavaScript both share some of the same problems: poor default scoping.</p>
+	<h3>ColdFusion</h3>
+	<pre><code class="prettyprint">public void function doSomething(){
+	myVar = &quot;foo&quot;; //this goes into the variables scope which == bad
+	var myOtherVar = &quot;bar&quot;; //this goes into the local scope which == good		
+}</code></pre>
+<h3>JavaScript</h3>
+	<pre><code class="prettyprint">function doSomething(){
+	myVar = &quot;foo&quot;; //this goes into the global scope which == bad
+	var myOtherVar = &quot;bar&quot;; //this goes into the function scope which == good		
+}</code></pre>
 </div>
 
-<div class="slide" id="themes">
-	<h2>Style Themes</h2>
-	<p>Customizes the colors, typography, and layout of slide&nbsp;content.</p>
-	<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/path/to/css/style-theme.css&quot;&gt;</code></pre>
-	<h2>Transition Themes</h2>
-	<p>Defines transitions between slides using CSS3 transitions.  Less capable browsers fall back to cutaways. But <strong>you</strong> aren&rsquo;t using <em>those</em> browsers to give your presentations, are&nbsp;you&hellip;</p>
-	<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/path/to/css/transition-theme.css&quot;&gt;</code></pre>
+<div class="slide" id="variables2">
+	<h2>Scoping Example</h2>
+	<pre><code class="prettyprint">function doSomething(){
+	myVar = &quot;foo&quot;; //this goes into the global scope which == bad
+	var myOtherVar = &quot;bar&quot;; //this goes into the function scope which == good		
+};
+
+console.log(myVar); //foo 
+console.log(myOtherVar); //error
+</code></pre>
+<input type="button" value="Run" id="runVariables">
 </div>
+
+<script type="text/javascript" charset="utf-8">
+	var variableButton = document.getElementById("runVariables");
+		
+	variableButton.addEventListener("click",function(){
+	
+		myVar = "foo"; //this goes into the global scope which == bad
+		var myOtherVar = "bar"; //this goes into the function scope which == good		
+		
+		outputToConsole();
+	});
+	
+	function outputToConsole(){
+		console.log(myVar);
+		console.log(myOtherVar);	
+	}
+</script>
 
 <div class="slide" id="extensions">
 	<h2>Extensions</h2>
