@@ -115,6 +115,7 @@ console.log(myOtherVar); //error
 </div>
 
 <script type="text/javascript" charset="utf-8">
+	
 	var variableButton = document.getElementById("runVariables");
 		
 	variableButton.addEventListener("click",function(){
@@ -129,6 +130,36 @@ console.log(myOtherVar); //error
 		console.log(myVar);
 		console.log(myOtherVar);	
 	}
+</script>
+
+<div class="slide" id="variables3">
+	<h2>Numbers</h2>
+	<ul>
+		<li class="slide" id="var1">
+			<p>All numbers in JavaScript are 64 bit floating point numbers.</p>
+			<p><pre><code>0.06 + 0.01 = <a href="#" id="numberButton">??</a></code></pre></p>
+		</li>
+		<li class="slide" id="var2">
+			<p>In ColdFusion the result of a mathimaitical expression is a java Long which is more precise.</p>
+			<p><pre><code>result = 0.06 + 0.01;
+	
+writedump(<a href="http://localhost/test.cfm?section=numbers" target="_blank">result</a>);
+
+writedump(result.getClass().getName());</code></pre></p>
+		</li>
+	<ul>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var numberButton = document.getElementById("numberButton");
+	
+	numberButton.addEventListener("click",function(e){
+		var result = 0.06 + 0.01;
+		console.log("0.06 + 0.01 = " + result);	
+		e.preventDefault();
+	});
+	
+	
 </script>
 
 <div class="slide" id="extensions">
