@@ -67,6 +67,22 @@
 </p>
 </div>
 
+<div class="slide" id="asumptions">
+	<h2>Asumptions</h2>
+	<ul>
+		<li class="slide" id="assumptions1">
+			<h3>You have some basic programming knowledge</h3>
+		</li>
+		<li class="slide" id="assumptions2">
+			<h3>You have written some JavaScript before.</h3>
+		</li>
+		<li class="slide" id="assumptions3">
+			<h3>You know the basics of ColdFusion.</h3>
+		</li>
+	</ul>
+
+</div>
+
 <div class="slide" id="what-well-cover">
 	<h2>What we'll cover</h2>
 	<ul>
@@ -137,11 +153,11 @@ console.log(myOtherVar); //error
 	<ul>
 		<li class="slide" id="var1">
 			<p>All numbers in JavaScript are 64 bit floating point numbers.</p>
-			<p><pre><code>0.06 + 0.01 = <a href="#" id="numberButton">??</a></code></pre></p>
+			<p><pre><codeclass="prettyprint">0.06 + 0.01 = <a href="#" id="numberButton">??</a></code></pre></p>
 		</li>
 		<li class="slide" id="var2">
 			<p>In ColdFusion the result of a mathimaitical expression is a java Long which is more precise.</p>
-			<p><pre><code>result = 0.06 + 0.01;
+			<p><pre><code class="prettyprint">result = 0.06 + 0.01;
 	
 writedump(<a href="http://localhost/test.cfm?section=numbers" target="_blank">result</a>);
 
@@ -161,6 +177,55 @@ writedump(result.getClass().getName());</code></pre></p>
 	
 	
 </script>
+
+<div class="slide" id="comparisons">
+	<h2>Comparisons</h2>
+	<p>In JavaScript there are two sets of comparison operators</p>
+	<ul>
+		<li>Type coercion operators: == and !==</li>
+		<li>Non-type coercion operators: === and !===</li>
+	</ul>
+	<p>As a ColdFusion developer you are probabaly used to the first type of operators (eq and neq for you &lt; CF9 devs).</p>	
+</div>
+
+<div class="slide" id="comparisons2">
+	<h2>Comparisons</h2>
+	<h3>What does this mean?</h3>
+	<p><code class="prettyprint">1 == "1"</code></p>
+	<p><strong>but</strong></p>
+	<p><code class="prettyprint">1 !== "1"</code></p>
+	<h3>So, which one do I use?</h3>
+	<p>If you are listening to Douglass Crockford you should ONLY use === and !==.  However, you'll see other respected members of the JavaScript community use ==.</p>
+</div>
+
+<div class="slide" id="comparisons3">
+	<h2>Comparisons</h2>
+	<h3>If I'm using === and I know "1" is a numeric value how do I get "1" to equal 1?</h3>
+	<p>There are two ways:</p>
+	<ol>
+		<li class="slide" id="comp1">
+			User the Number object: <code class="prettyprint">Number("1")</code>
+		</li>
+		<li class="slide" id="comp1">
+			Use the parseInt function: <code class="prettyprint">parseInt("1",10) //the second parm is the radix for this presentation we'll just say always specify 10</code>
+		</li>
+	</ol>
+</div>
+
+<div class="slide" id="loops">
+	<h2>Loops</h2>
+	<h3>JavaScript has for loops, while loops, and for-in loops</h3>
+	<p>They all work pretty much the same way ColdFusion loops do.</p>
+	<p><strong>If you've ONLY written CFML you'll be surprised to know that counters in JavaScript start with 0.  This is how it is in just about every other language</strong></p>
+	<h4>ColdFusion</h4>
+<pre><code>for(var i = 1; i lte 100; i = i + 1){
+	...
+}</pre></code>
+	<h4>JavaScript</h4>
+<pre><code>for(var i = 0; i lt 100; i = i++){
+	...
+}</pre></code>
+</div>
 
 <div class="slide" id="extensions">
 	<h2>Extensions</h2>
