@@ -156,7 +156,7 @@ console.log(myOtherVar); //error
 			<p><pre><codeclass="prettyprint">0.06 + 0.01 = <a href="#" id="numberButton">??</a></code></pre></p>
 		</li>
 		<li class="slide" id="var2">
-			<p>In ColdFusion the result of a mathimaitical expression is a java Long which is more precise.</p>
+			<p>In ColdFusion the result of a mathimaitical expression is a java.lang.Double which is more precise and will give you the expected value.</p>
 			<p><pre><code class="prettyprint">result = 0.06 + 0.01;
 	
 writedump(<a href="http://localhost/test.cfm?section=numbers" target="_blank">result</a>);
@@ -204,13 +204,104 @@ writedump(result.getClass().getName());</code></pre></p>
 	<p>There are two ways:</p>
 	<ol>
 		<li class="slide" id="comp1">
-			User the Number object: <code class="prettyprint">Number("1")</code>
+			Use the Number object: <code class="prettyprint">Number("1")</code>
 		</li>
 		<li class="slide" id="comp1">
 			Use the parseInt function: <code class="prettyprint">parseInt("1",10) //the second parm is the radix for this presentation we'll just say always specify 10</code>
 		</li>
 	</ol>
 </div>
+
+<div class="slide" id="comparisons4">
+	<h2>Truthy / Falsy Values</h2>
+		<h4>Truthy Values</h4>
+		<table class="data">
+			<thead>
+			<tr>
+				<th>ColdFusion</th>
+				<th>JavaScript</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>true</td>
+				<td>true</td>
+			</tr>
+			<tr>
+				<td>numbers &gt; 0</td>
+				<td>numbers &gt; 0</td>
+			</tr>
+			<tr>
+				<td>"true"</td>
+				<td>"any non empty string" (confirm this)</td>
+			</tr>
+			<tr>
+				<td>"yes"</td>
+				<td>&nbsp;</td>
+			</tr>
+			</table>
+		</table>
+		
+		<h4>Falsy Values</h4>
+		<table class="data">
+			<thead>
+			<tr>
+				<th>ColdFusion</th>
+				<th>JavaScript</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>false</td>
+				<td>false</td>
+			</tr>
+			<tr>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<td>"false"</td>
+				<td>"empty strings" (confirm this)</td>
+			</tr>
+			<tr>
+				<td>"no"</td>
+				<td>undefined</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>NaN</td>
+			</tr>
+			</table>
+		</table>
+</div>
+
+<div class="slide" id="andor">
+	<h2>And / Or</h2>
+	<p>And / Or operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
+	<h4>CFML</h4>
+	<pre><code class="prettyprint">//evaluates both expressions and tests if either are true
+if(false || len("hello")){
+	writeoutput("<a href="http://localhost/test.cfm?section=andor" target="_blank">Hello World</a>");
+}
+</code>
+</pre>
+<h4>JavaScript</h4>
+	<pre><code class="prettyprint">//returns the value of the first expression if its true, otherwise returns the value of the second expression
+if(false || "hello"){
+	console.log("<a href="#" id="andor">Hello World</a>");
+}
+</code>
+</pre>
+<p>This can be used to set default values</p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var andorLink = document.getElementById("andor");
+	
+	andorLink.addEventListener("click",function(){
+		console.log(false || "hello");
+	});
+</script>
 
 <div class="slide" id="loops">
 	<h2>Loops</h2>

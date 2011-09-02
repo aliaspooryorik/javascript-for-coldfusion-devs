@@ -388,3 +388,11 @@ body.deck-container {
     display: none;
   }
 }
+
+table.data{
+	width: 900px;
+}
+
+table th{
+	text-aligh: left;
+}
