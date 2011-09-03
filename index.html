@@ -89,6 +89,9 @@
 		<li class="slide" id="coverVars">
 			<h3>Variables</h3>
 		</li>
+		<li class="slide" id="coverStmts">
+			<h3>Statements</h3>
+		</li>
 		<li class="slide" id="coverFn">
 			<h3>Functions</h3>
 		</li>
@@ -177,6 +180,28 @@ writedump(result.getClass().getName());</code></pre></p>
 	
 	
 </script>
+
+<div class="slide" id="arrays">
+	<h2>Arrays</h2>
+	<ul>
+	<li class="slide" id="ar">If you've only worked with ColdFusion arrays its extremely important to note that JavaScript arrays start with <strong>0</strong></li>
+	<li class="slide" id="ar1">Arrays can be created with the <code class="prettyprint">var myArray = new Array()</code> keyword, or just like in ColdFusion
+		the array literal pattern: <code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code></li>
+	<li class="slide" id="ar2">
+		Arrays are objects so they have a set of methods:
+		<ul>
+			<li id="arm1"><pre><code class="prettyprint">myArray.push("item 4") //adds an element to the end of the array</code></pre></li>
+			<li id="arm1"><pre><code class="prettyprint">myArray.slice(1,2) //deletes 2 items from the array starting at position 1</code></pre></li>
+		</ul>
+	</li>
+	<ul>
+</div>
+
+<div class="slide" id="statements">
+	<h2>Statements</h2>
+	<p>Next we'll go over some of the statements in JavaScript.   They are very similar to what we have available in ColdFusion, but there are some
+		subtle differences to be aware of</p>
+</div>
 
 <div class="slide" id="comparisons">
 	<h2>Comparisons</h2>
@@ -323,7 +348,7 @@ myFunc();
 <script type="text/javascript" charset="utf-8">
 	var andorLink = document.getElementById("andor2");
 	
-	var myFunc = functin(arg){
+	var myFunc = function(arg){
 		var myVal = arg || "defaultValue"; //if no arg was passed in myVal is "defaultValue"
 		console.log(myVal);
 	}
@@ -332,15 +357,26 @@ myFunc();
 		myFunc();
 	});
 </script>
+
 <div class="slide" id="andor3">
 	<h2>And / Or Operators</h2>
 	<p>Similar to the || operator the && operator returns the first operator if it is false, otherwise it procuces the value of the second:</p>
 	<pre><code class="prettyprint">//returns the value of the first expression if its false, otherwise returns the value of the second expression
-console.log(false && "Foo");
-console.log(true && "Foo");
+console.log(false &amp;&amp; &quot;Foo&quot;);
+console.log(true &amp;&amp; &quot;Bar&quot;);
 </code>
 </pre>
+<input type="button" id="andor3" value="Run">
 </div>
+
+<script type="text/javascript" charset="utf-8">
+	var andorLink = document.getElementById("andor3");
+
+	andorLink.addEventListener("click",function(){
+		console.log(false && "Foo");
+		console.log(true && "Bar");
+	});
+</script>
 
 <div class="slide" id="loops">
 	<h2>Loops</h2>
@@ -348,68 +384,78 @@ console.log(true && "Foo");
 	<p>They all work pretty much the same way ColdFusion loops do.</p>
 	<p><strong>If you've ONLY written CFML you'll be surprised to know that counters in JavaScript start with 0.  This is how it is in just about every other language</strong></p>
 	<h4>ColdFusion</h4>
-<pre><code>for(var i = 1; i lte 100; i = i + 1){
+<pre><code class="prettyprint">for(var i = 1; i lte 100; i = i + 1){
 	...
 }</pre></code>
 	<h4>JavaScript</h4>
-<pre><code>for(var i = 0; i lt 100; i = i++){
+<pre><code class="prettyprint">for(var i = 0; i lt 100; i = i++){
 	...
 }</pre></code>
 </div>
 
-<div class="slide" id="extensions">
-	<h2>Extensions</h2>
-	<p>Core gives you basic slide functionality with left and right arrow navigation, but you may want more. Here are the ones included in this&nbsp;deck:</p>
-	
-	<ul>
-		<li class="slide" id="extensions-goto">
-			<strong>deck.goto</strong>: Adds a shortcut key to jump to any slide number.  Hit g, type in the slide number, and hit&nbsp;enter.
-		</li>
+<div class="slide" id="foriinloops">
+	<h2>Loops</h2>
+	<h3>for-in loops</h3>
+	<p>In JavaScript you can loop through the properties of an object like you can loop through the keys of a Struct</p>
+	<h3>ColdFusion</h3>
+<pre><code class="prettyprint">for(var myKey in myStruct){
+	<a href="http://localhost/test.cfm?section=forin" target="_blank">myVar</a> = myStruct[key];
+}</pre></code>
+	<h3>JavaScript</h3>
+<pre><code class="prettyprint">for(var myKey in myStruct){
+	myVar = myStruct[key];
+}</pre></code>
+<input type="button" value="Run" id="runforin">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var andorLink = document.getElementById("runforin");
+
+	andorLink.addEventListener("click",function(){
+		var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
 		
-		<li class="slide" id="extensions-hash">
-			<strong>deck.hash</strong>: Enables internal linking within slides, deep linking to individual slides, and updates the address bar &amp; a permalink anchor with each slide&nbsp;change.
-		</li>
+		for(var myKey in myObj){
+			console.log(myKey + " = " + myObj[myKey]);
+		}
+	});
+</script>
 
-		<li class="slide" id="extensions-menu">
-			<strong>deck.menu</strong>: Adds a menu view, letting you see all slides in a grid. Hit m to toggle to menu view, continue navigating your deck, and hit m to return to normal view. Touch devices can double-tap the deck to switch between&nbsp;views.
-		</li>
-
-		<li class="slide" id="extensions-navigation">
-			<strong>deck.navigation</strong>: Adds clickable left and right buttons for the less keyboard&nbsp;inclined.
-		</li>
-
-		<li class="slide" id="extensions-status">
-			<strong>deck.status</strong>: Adds a page number indicator. (current/total)
-		</li>
+<div class="slide" id="functions">
+	<h2>Functions</h2>
+	<p>JavaScript functions are one of the most powerful features of the languages</p>
+	<p>They have many similariries to functions in ColdFusion:</p>
+	<ul>
+		<li class="slide" id="fn1">First class citizens</li>
+		<li class="slide" id="fn2">Arguments are typeless</li>
+		<li class="slide" id="fn3">Arguments are passed in an array like structure called arguments</li>
 	</ul>
+</div>
+
+<div class="slide" id="functions2">
+	<h2>Functions</h2>
+	<p>However there are some important differences</p>
+	<ul>
+		<li class="slide" id="fn4">There is ONLY function scope in JavaScript.</li>
+		<li class="slide" id="fn5">You can have unnamed, or anonymous functions in JavaScript</li>
+	</ul>
+</div>
+
+<div class="slide" id="function3">
+	<h2>Function literal pattern</h2>
+	<pre><code class="prettyprint">var myFunc = function(args){
+	...		
+};
+
+//invocation
+myFunc(arg1, "arg2");
+</code></pre>	
+</div>
+
+<div class="slide" id="function4">
+	<h2>Arguments array like object</h2>
 	
-	<p class="slide" id="extension-folders">Each extension folder in the download package contains the necessary JavaScript, CSS, and HTML&nbsp;files. For a complete list of extension modules included in deck.js, check out the&nbsp;<a href="http://imakewebthings.github.com/deck.js/docs">documentation</a>.</p>
 </div>
-
-<div class="slide" id="nested">
-	<h2>Nested Slides</h2>
-	<p>That last slide had a few steps.  To create substeps in slides, just nest them:</p>
-	<pre><code>&lt;div class=&quot;slide&quot;&gt;
-  &lt;h2&gt;Extensions&lt;/h2&gt;
-  &lt;p&gt;Core gives you basic slide functionality...&lt;/p&gt;		
-  &lt;ul&gt;
-     &lt;li class=&quot;slide&quot;&gt;
-        &lt;h3&gt;deck.goto&lt;/h3&gt;
-        &lt;p&gt;Adds a shortcut key to jump to any slide number...&lt;/p&gt;
-     &lt;/li&gt;
-     &lt;li class=&quot;slide&quot;&gt;...&lt;/li&gt;	
-     &lt;li class=&quot;slide&quot;&gt;...&lt;/li&gt;
-     &lt;li class=&quot;slide&quot;&gt;...&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;</code></pre>
-</div>
-
-<div class="slide" id="elements-images">
-	<h2>Other Elements: Images</h2>
-	<img src="http://placekitten.com/600/375" alt="Kitties">
-	<pre><code>&lt;img src=&quot;http://placekitten.com/600/375&quot; alt=&quot;Kitties&quot;&gt;</code></pre>
-</div>
-
+	
 <div class="slide" id="elements-blockquotes">
 	<h2>Other Elements: Blockquotes</h2>
 	<blockquote cite="http://example.org">
