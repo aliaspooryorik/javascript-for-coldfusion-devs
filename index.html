@@ -104,12 +104,12 @@
 
 <div class="slide" id="variables">
 	<h2>Variables</h2>
-	<p>Variables in ColdFusion and JavaScript both share some of the same problems: poor default scoping.</p>
+	<p>Variables in ColdFusion and JavaScript both share the same problem: poor default scoping.</p>
 	<h3>ColdFusion</h3>
-	<pre><code class="prettyprint">public void function doSomething(){
-	myVar = &quot;foo&quot;; //this goes into the variables scope which == bad
-	var myOtherVar = &quot;bar&quot;; //this goes into the local scope which == good		
-}</code></pre>
+	<pre><code class="prettyprint">&lt;cffunction name=&quot;doSomething&quot; returnType=&quot;void&quot;&gt;
+	&lt;cfset myVar = &amp;quot;foo&amp;quot&gt; &lt;!---this goes into the variables scope which == bad ---&gt;
+	&lt;cfset var myOtherVar = &amp;quot;bar&amp;quot&gt; &lt;!---this goes into the local scope which == good ---&gt;		
+&lt;/cffunction&gt;</code></pre>
 <h3>JavaScript</h3>
 	<pre><code class="prettyprint">function doSomething(){
 	myVar = &quot;foo&quot;; //this goes into the global scope which == bad
@@ -185,17 +185,17 @@ writedump(result.getClass().getName());</code></pre></p>
 		<li>Type coercion operators: == and !==</li>
 		<li>Non-type coercion operators: === and !===</li>
 	</ul>
-	<p>As a ColdFusion developer you are probabaly used to the first type of operators (eq and neq for you &lt; CF9 devs).</p>	
+	<p>As a ColdFusion developer you are probabaly used to the first type of operators, also known as <strong>eq</strong> and <strong>neq</strong>.</p>	
 </div>
 
 <div class="slide" id="comparisons2">
 	<h2>Comparisons</h2>
 	<h3>What does this mean?</h3>
-	<p><code class="prettyprint">1 == "1"</code></p>
+	<p><code class="prettyprint">1 == "1" //true</code></p>
 	<p><strong>but</strong></p>
-	<p><code class="prettyprint">1 !== "1"</code></p>
+	<p><code class="prettyprint">1 === "1" //false</code></p>
 	<h3>So, which one do I use?</h3>
-	<p>If you are listening to Douglass Crockford you should ONLY use === and !==.  However, you'll see other respected members of the JavaScript community use ==.</p>
+	<p class="slide" id="crockford">If you are listening to Douglass Crockford you should ONLY use === and !==.  However, you'll see other respected members of the JavaScript community use ==.</p>
 </div>
 
 <div class="slide" id="comparisons3">
@@ -207,41 +207,13 @@ writedump(result.getClass().getName());</code></pre></p>
 			Use the Number object: <code class="prettyprint">Number("1")</code>
 		</li>
 		<li class="slide" id="comp1">
-			Use the parseInt function: <code class="prettyprint">parseInt("1",10) //the second parm is the radix for this presentation we'll just say always specify 10</code>
+			Use the parseInt function: <code class="prettyprint">parseInt("1",10) //the second parm is the radix.  For this presentation we'll just say always specify 10</code>
 		</li>
 	</ol>
 </div>
 
 <div class="slide" id="comparisons4">
 	<h2>Truthy / Falsy Values</h2>
-		<h4>Truthy Values</h4>
-		<table class="data">
-			<thead>
-			<tr>
-				<th>ColdFusion</th>
-				<th>JavaScript</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td>true</td>
-				<td>true</td>
-			</tr>
-			<tr>
-				<td>numbers &gt; 0</td>
-				<td>numbers &gt; 0</td>
-			</tr>
-			<tr>
-				<td>"true"</td>
-				<td>"any non empty string" (confirm this)</td>
-			</tr>
-			<tr>
-				<td>"yes"</td>
-				<td>&nbsp;</td>
-			</tr>
-			</table>
-		</table>
-		
 		<h4>Falsy Values</h4>
 		<table class="data">
 			<thead>
@@ -261,7 +233,7 @@ writedump(result.getClass().getName());</code></pre></p>
 			</tr>
 			<tr>
 				<td>"false"</td>
-				<td>"empty strings" (confirm this)</td>
+				<td>"empty strings"</td>
 			</tr>
 			<tr>
 				<td>"no"</td>
@@ -273,26 +245,55 @@ writedump(result.getClass().getName());</code></pre></p>
 			</tr>
 			</table>
 		</table>
+		
+		<h4>Truthy Values</h4>
+		<table class="data">
+			<thead>
+			<tr>
+				<th>ColdFusion</th>
+				<th>JavaScript</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>true</td>
+				<td>Anything that is NOT falsy</td>
+			</tr>
+			<tr>
+				<td>numbers != 0</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>"true"</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>"yes"</td>
+				<td>&nbsp;</td>
+			</tr>
+			</table>
+		</table>
+		
+	
 </div>
 
 <div class="slide" id="andor">
-	<h2>And / Or</h2>
+	<h2>And / Or Operators</h2>
 	<p>And / Or operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
-	<h4>CFML</h4>
+	<h3>CFML</h3>
 	<pre><code class="prettyprint">//evaluates both expressions and tests if either are true
 if(false || len("hello")){
 	writeoutput("<a href="http://localhost/test.cfm?section=andor" target="_blank">Hello World</a>");
 }
 </code>
 </pre>
-<h4>JavaScript</h4>
+	<h3>JavaScript</h3>
 	<pre><code class="prettyprint">//returns the value of the first expression if its true, otherwise returns the value of the second expression
-if(false || "hello"){
-	console.log("<a href="#" id="andor">Hello World</a>");
-}
+console.log(false || &quot;hello&quot;);
+console.log(&quot;world&quot; || &quot;foo&quot;);
 </code>
 </pre>
-<p>This can be used to set default values</p>
+<input type="button" id="andor" value="Run">
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -300,8 +301,46 @@ if(false || "hello"){
 	
 	andorLink.addEventListener("click",function(){
 		console.log(false || "hello");
+		console.log("world" || "foo");
 	});
 </script>
+
+<div class="slide" id="andor2">
+	<h2>And / Or Operators</h2>
+	<p>The || operator can be used to set default values like so:</p>
+	<pre><code class="prettyprint">//returns the value of the first expression if its true, otherwise returns the value of the second expression
+var myFunc = functin(arg){
+	var myVal = arg || &quot;defaultValue&quot;; //if no arg was passed in myVal is &quot;defaultValue&quot;
+	console.log(myVal);
+}
+
+myFunc();
+</code>
+</pre>
+<input type="button" value="Run" id="andor2">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var andorLink = document.getElementById("andor2");
+	
+	var myFunc = functin(arg){
+		var myVal = arg || "defaultValue"; //if no arg was passed in myVal is "defaultValue"
+		console.log(myVal);
+	}
+
+	andorLink.addEventListener("click",function(){
+		myFunc();
+	});
+</script>
+<div class="slide" id="andor3">
+	<h2>And / Or Operators</h2>
+	<p>Similar to the || operator the && operator returns the first operator if it is false, otherwise it procuces the value of the second:</p>
+	<pre><code class="prettyprint">//returns the value of the first expression if its false, otherwise returns the value of the second expression
+console.log(false && "Foo");
+console.log(true && "Foo");
+</code>
+</pre>
+</div>
 
 <div class="slide" id="loops">
 	<h2>Loops</h2>
