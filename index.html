@@ -184,28 +184,31 @@ writedump(result.getClass().getName());</code></pre></p>
 <div class="slide" id="arrays">
 	<h2>Arrays</h2>
 	<ul>
-	<li class="slide" id="ar">If you've only worked with ColdFusion arrays its extremely important to note that JavaScript arrays start with <strong>0</strong></li>
-	<li class="slide" id="ar1">Arrays can be created with the <code class="prettyprint">var myArray = new Array()</code> keyword, or just like in ColdFusion
-		the array literal pattern: <code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code></li>
-	<li class="slide" id="ar2">
-		Arrays are objects so they have a set of methods:
-		<ul>
-			<li id="arm1"><pre><code class="prettyprint">myArray.push("item 4") //adds an element to the end of the array</code></pre></li>
-			<li id="arm1"><pre><code class="prettyprint">myArray.slice(1,2) //deletes 2 items from the array starting at position 1</code></pre></li>
-		</ul>
-	</li>
-	<ul>
+		<li class="slide" id="ar">If you've only worked with ColdFusion arrays its extremely important to note that JavaScript arrays start with <strong>0</strong></li>
+		<li class="slide" id="ar1">Arrays can be created with the <code class="prettyprint">var myArray = new Array()</code> keyword, or just like in ColdFusion
+			the array literal pattern: <code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code></li>
+		<li class="slide" id="ar2">Arrays can contain anything</li>
+	</ul>
 </div>
 
-<div class="slide" id="statements">
-	<h2>Statements</h2>
-	<p>Next we'll go over some of the statements in JavaScript.   They are very similar to what we have available in ColdFusion, but there are some
-		subtle differences to be aware of</p>
+<div class="slide" id="arrays2">
+	<h2>Arrays</h2>
+	<p>Arrays are objects so they have methods:</p>
+		<div><pre><code class="prettyprint">myArray.push("item 4") //adds an element to the end of the array</code></div>
+		<div><pre><code class="prettyprint">myArray.slice(1,2) //deletes 2 items from the array starting at position 1</code></div>
+		<div><pre><code class="prettyprint">myArray.pop() //removes the last element of the array and returns it</code></div>
+		<div><pre><code class="prettyprint">myArray.sort() //sorts the elements of the array</code></div>
+</div>
+
+<div class="slide" id="operators">
+	<h2>Operators</h2>
+	<p>Most of the operators in JavaScript are very similar to what we have available in ColdFusion, but there are some
+		subtle differences to be aware of.</p>
 </div>
 
 <div class="slide" id="comparisons">
 	<h2>Comparisons</h2>
-	<p>In JavaScript there are two sets of comparison operators</p>
+	<p>In JavaScript there are two sets of comparison operators;</p>
 	<ul>
 		<li>Type coercion operators: == and !==</li>
 		<li>Non-type coercion operators: === and !===</li>
@@ -215,7 +218,7 @@ writedump(result.getClass().getName());</code></pre></p>
 
 <div class="slide" id="comparisons2">
 	<h2>Comparisons</h2>
-	<h3>What does this mean?</h3>
+	<h3>What does this mean to you as a JavaScript programmer?</h3>
 	<p><code class="prettyprint">1 == "1" //true</code></p>
 	<p><strong>but</strong></p>
 	<p><code class="prettyprint">1 === "1" //false</code></p>
@@ -231,8 +234,11 @@ writedump(result.getClass().getName());</code></pre></p>
 		<li class="slide" id="comp1">
 			Use the Number object: <code class="prettyprint">Number("1")</code>
 		</li>
-		<li class="slide" id="comp1">
+		<li class="slide" id="comp2">
 			Use the parseInt function: <code class="prettyprint">parseInt("1",10) //the second parm is the radix.  For this presentation we'll just say always specify 10</code>
+		</li>
+		<li class="slide" id="comp2">
+			There is also a parseFloat function: <code class="prettyprint">parseFloat("1") //turns a string into a float </code>
 		</li>
 	</ol>
 </div>
@@ -303,8 +309,8 @@ writedump(result.getClass().getName());</code></pre></p>
 </div>
 
 <div class="slide" id="andor">
-	<h2>And / Or Operators</h2>
-	<p>And / Or operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
+	<h2>Logical Operators</h2>
+	<p>Logical operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
 	<h3>CFML</h3>
 	<pre><code class="prettyprint">//evaluates both expressions and tests if either are true
 if(false || len("hello")){
@@ -331,7 +337,7 @@ console.log(&quot;world&quot; || &quot;foo&quot;);
 </script>
 
 <div class="slide" id="andor2">
-	<h2>And / Or Operators</h2>
+	<h2>Logical Operators</h2>
 	<p>The || operator can be used to set default values like so:</p>
 	<pre><code class="prettyprint">//returns the value of the first expression if its true, otherwise returns the value of the second expression
 var myFunc = functin(arg){
@@ -359,7 +365,7 @@ myFunc();
 </script>
 
 <div class="slide" id="andor3">
-	<h2>And / Or Operators</h2>
+	<h2>Logical</h2>
 	<p>Similar to the || operator the && operator returns the first operator if it is false, otherwise it procuces the value of the second:</p>
 	<pre><code class="prettyprint">//returns the value of the first expression if its false, otherwise returns the value of the second expression
 console.log(false &amp;&amp; &quot;Foo&quot;);
@@ -426,17 +432,18 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	<p>They have many similariries to functions in ColdFusion:</p>
 	<ul>
 		<li class="slide" id="fn1">First class citizens</li>
-		<li class="slide" id="fn2">Arguments are typeless</li>
+		<li class="slide" id="fn2">Arguments are type-less</li>
 		<li class="slide" id="fn3">Arguments are passed in an array like structure called arguments</li>
 	</ul>
 </div>
 
 <div class="slide" id="functions2">
 	<h2>Functions</h2>
-	<p>However there are some important differences</p>
+	<p>However, there are some important differences</p>
 	<ul>
 		<li class="slide" id="fn4">There is ONLY function scope in JavaScript.</li>
 		<li class="slide" id="fn5">You can have unnamed, or anonymous functions in JavaScript</li>
+		<li class="slide" id="fn6">Functions may have nested inner functions, more on these "enclosed" functions later.</li>
 	</ul>
 </div>
 
@@ -452,34 +459,60 @@ myFunc(arg1, "arg2");
 </div>
 
 <div class="slide" id="function4">
-	<h2>Arguments array like object</h2>
+	<h2>Function Arguments</h2>
+	<p>Just like in ColdFusion you can have named arguments and arguments that are outside of the named arguments.</p>
+	<p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
+	<pre><code class="prettyprint">var myFunc(){
+		console.log(arguments);
+	};
 	
+	myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});
+</code></pre>
+<input type="button" value="Run" id="fnargs">
 </div>
 	
-<div class="slide" id="elements-blockquotes">
-	<h2>Other Elements: Blockquotes</h2>
-	<blockquote cite="http://example.org">
-		<p>Food is an important part of a balanced diet.</p>
-		<p><cite>Fran Lebowitz</cite></p>
-	</blockquote>
-	<pre><code>&lt;blockquote cite=&quot;http://example.org&quot;&gt;
-  &lt;p&gt;Food is an important part of a balanced diet.&lt;/p&gt;
-  &lt;p&gt;&lt;cite&gt;Fran Lebowitz&lt;/cite&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</code></pre>
+<script type="text/javascript" charset="utf-8">
+	var funcButton = document.getElementById("fnargs");	
+
+	funcButton.addEventListener("click",function(){
+		myFunc("Hello", "World", function(){});	
+	});
+	
+	var myFunc = function(){
+		console.log(arguments);
+	};	
+</script>
+
+<div class="slide" id="objects">
+	<h2>Objects</h2>
+	<p>Objects in JavaScript can be thought of as being similar to a ColdFusion struct.</p>
+	<h3>ColdFusion</h3>
+	<pre><code class="prettyprint">
+		myStruct = {foo = "foo", bar = "bar"};
+	</code></pre>
+	<h3>JavaScript</h3>
+	<pre><code class="prettyprint">
+		myStruct = {foo : "Foo", bar : "Bar", myFunc : function(){ //do something}};
+	</code></pre>
 </div>
 
-
-<div class="slide" id="elements-videos">
-	<h2>Other Elements: Video Embeds</h2>
-	<p>Embed videos from your favorite online video service or with an HTML5 video&nbsp;element.</p>
-	
-	
-	<pre><code>&lt;iframe src=&quot;http://player.vimeo.com/video/1063136?title=0&amp;amp;byline=0&amp;amp;portrait=0&quot; width=&quot;400&quot; height=&quot;225&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</code></pre>
+<div class="slide" id="objects">
+	<h2>Objects</h2>
+	<p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
+	<pre><code class="prettyprint">
+		myStruct.foo; //Foo
+		myStruct["foo"]; //Foo
+	</code></pre>
 </div>
 
-<div class="slide" id="digging-deeper">
-	<h2>Digging Deeper</h2>
-	<p>If you want to learn about making your own themes, extending deck.js, and more, check out the&nbsp;<a href="docs/">documentation</a>.</p>
+<div class="slide" id="objects">
+	<h2>Objects</h2>
+	<p>As shown in the for-in loop example you can use a for-in loop to loop through a objects properties.</p>
+	<p>However, theres on important thing to note.</p>
+	<pre><code class="prettyprint">
+		myStruct.foo; //Foo
+		myStruct["foo"]; //Foo
+	</code></pre>
 </div>
 
 <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
