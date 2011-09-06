@@ -194,10 +194,10 @@ writedump(result.getClass().getName());</code></pre></p>
 <div class="slide" id="arrays2">
 	<h2>Arrays</h2>
 	<p>Arrays are objects so they have methods:</p>
-		<div><pre><code class="prettyprint">myArray.push("item 4") //adds an element to the end of the array</code></div>
-		<div><pre><code class="prettyprint">myArray.slice(1,2) //deletes 2 items from the array starting at position 1</code></div>
-		<div><pre><code class="prettyprint">myArray.pop() //removes the last element of the array and returns it</code></div>
-		<div><pre><code class="prettyprint">myArray.sort() //sorts the elements of the array</code></div>
+		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.push("item 4") //arrayappend in CFML</code></div>
+		<div class="slide" id="arm2"><pre><code class="prettyprint">myArray.slice(1,2) //deletes 2 items from the array starting at position 1</code></div>
+		<div class="slide" id="arm3"><pre><code class="prettyprint">myArray.pop() //removes the last element of the array and returns it</code></div>
+		<div class="slide" id="arm4"><pre><code class="prettyprint">myArray.sort() //arraysort in CFML</code></div>
 </div>
 
 <div class="slide" id="operators">
@@ -210,10 +210,10 @@ writedump(result.getClass().getName());</code></pre></p>
 	<h2>Comparisons</h2>
 	<p>In JavaScript there are two sets of comparison operators;</p>
 	<ul>
-		<li>Type coercion operators: == and !==</li>
-		<li>Non-type coercion operators: === and !===</li>
+		<li class="slide" id="comp1">Type coercion operators: == and !==</li>
+		<li class="slide" id="comp2">Non-type coercion operators: === and !===</li>
 	</ul>
-	<p>As a ColdFusion developer you are probabaly used to the first type of operators, also known as <strong>eq</strong> and <strong>neq</strong>.</p>	
+	<p class="slide" id="comp3">As a ColdFusion developer you are probabaly used to the first type of operators, also known as <strong>eq</strong> and <strong>neq</strong>.</p>	
 </div>
 
 <div class="slide" id="comparisons2">
@@ -223,22 +223,19 @@ writedump(result.getClass().getName());</code></pre></p>
 	<p><strong>but</strong></p>
 	<p><code class="prettyprint">1 === "1" //false</code></p>
 	<h3>So, which one do I use?</h3>
-	<p class="slide" id="crockford">If you are listening to Douglass Crockford you should ONLY use === and !==.  However, you'll see other respected members of the JavaScript community use ==.</p>
+	<p class="slide" id="crockford">If you are listening to Douglass Crockford you should ONLY use === and !==.  However, you'll see other respected members of the JavaScript community use ==.  I like to stick with ===.</p>
 </div>
 
 <div class="slide" id="comparisons3">
 	<h2>Comparisons</h2>
 	<h3>If I'm using === and I know "1" is a numeric value how do I get "1" to equal 1?</h3>
-	<p>There are two ways:</p>
+	<p>There are a few ways, two of the most common are:</p>
 	<ol>
 		<li class="slide" id="comp1">
 			Use the Number object: <code class="prettyprint">Number("1")</code>
 		</li>
 		<li class="slide" id="comp2">
 			Use the parseInt function: <code class="prettyprint">parseInt("1",10) //the second parm is the radix.  For this presentation we'll just say always specify 10</code>
-		</li>
-		<li class="slide" id="comp2">
-			There is also a parseFloat function: <code class="prettyprint">parseFloat("1") //turns a string into a float </code>
 		</li>
 	</ol>
 </div>
@@ -313,22 +310,22 @@ writedump(result.getClass().getName());</code></pre></p>
 	<p>Logical operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
 	<h3>CFML</h3>
 	<pre><code class="prettyprint">//evaluates both expressions and tests if either are true
-if(false || len("hello")){
+if(false || len("hello")){ 
 	writeoutput("<a href="http://localhost/test.cfm?section=andor" target="_blank">Hello World</a>");
 }
 </code>
 </pre>
 	<h3>JavaScript</h3>
 	<pre><code class="prettyprint">//returns the value of the first expression if its true, otherwise returns the value of the second expression
-console.log(false || &quot;hello&quot;);
+console.log(false || &quot;hello&quot;); 
 console.log(&quot;world&quot; || &quot;foo&quot;);
 </code>
 </pre>
-<input type="button" id="andor" value="Run">
+<input type="button" id="andorbtn" value="Run">
 </div>
 
 <script type="text/javascript" charset="utf-8">
-	var andorLink = document.getElementById("andor");
+	var andorLink = document.getElementById("andorbtn");
 	
 	andorLink.addEventListener("click",function(){
 		console.log(false || "hello");
@@ -341,26 +338,28 @@ console.log(&quot;world&quot; || &quot;foo&quot;);
 	<p>The || operator can be used to set default values like so:</p>
 	<pre><code class="prettyprint">//returns the value of the first expression if its true, otherwise returns the value of the second expression
 var myFunc = functin(arg){
-	var myVal = arg || &quot;defaultValue&quot;; //if no arg was passed in myVal is &quot;defaultValue&quot;
+	var myVal = document.getElementById(arg) || document.createElement(&quot;div&quot;); //if no arg was passed in myVal is &quot;defaultValue&quot;
 	console.log(myVal);
 }
 
 myFunc();
+myFunc("andor2");
 </code>
 </pre>
-<input type="button" value="Run" id="andor2">
+<input type="button" value="Run" id="andor2btn">
 </div>
 
 <script type="text/javascript" charset="utf-8">
-	var andorLink = document.getElementById("andor2");
+	var andorLink = document.getElementById("andor2btn");
 	
-	var myFunc = function(arg){
-		var myVal = arg || "defaultValue"; //if no arg was passed in myVal is "defaultValue"
-		console.log(myVal);
+	var myOperatorFunc = function(arg){
+		var myElem = document.getElementById(arg) || document.createElement("div") //if no arg was passed in myVal is "defaultValue"
+		console.log(myElem);
 	}
 
 	andorLink.addEventListener("click",function(){
-		myFunc();
+		myOperatorFunc();
+		myOperatorFunc("andor2");
 	});
 </script>
 
@@ -487,32 +486,78 @@ myFunc(arg1, "arg2");
 	<h2>Objects</h2>
 	<p>Objects in JavaScript can be thought of as being similar to a ColdFusion struct.</p>
 	<h3>ColdFusion</h3>
-	<pre><code class="prettyprint">
-		myStruct = {foo = "foo", bar = "bar"};
-	</code></pre>
+	<pre><code class="prettyprint">myStruct = {foo = &quot;foo&quot;, bar = &quot;bar&quot;, {baz=&quot;baz&quot;, pez = &quot;pez&quot;}};</code></pre>
 	<h3>JavaScript</h3>
-	<pre><code class="prettyprint">
-		myStruct = {foo : "Foo", bar : "Bar", myFunc : function(){ //do something}};
-	</code></pre>
+	<pre><code class="prettyprint">myStruct = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, myFunc : function(){ //do something}}; //this is called an object literal</code></pre>
 </div>
 
-<div class="slide" id="objects">
+<div class="slide" id="objects2">
 	<h2>Objects</h2>
 	<p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
-	<pre><code class="prettyprint">
-		myStruct.foo; //Foo
-		myStruct["foo"]; //Foo
-	</code></pre>
+	<pre><code class="prettyprint">myStruct.foo; //Foo
+myStruct["foo"]; //Foo</code></pre>
+	<p>Also similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method.</p>
+	<h3>ColdFusion</h3>
+	<pre><code class="prettyprint">structKeyExists(myStruct,"foo"); //true</code></pre>
+	<h3>JavaScript</h3>
+	<pre><code class="prettyprint">myStruct.hasOwnProperty("foo"); //true</code></pre>
 </div>
 
-<div class="slide" id="objects">
+<div class="slide" id="objects3">
+	<h2>Objects</h2>
+	<p>JavaScript is NOT a true Object Ooriented language so there are no classes and no subclassing.  JavaScript uses a prototypical model to provide inheritance.</p>
+	<p>This is where things get a bit confusing becuase the "Objects" we've been creating using the object literal pattern {} don't really act like objects.</p>
+	<p>In order to create an object that acts like an object we need to use a Constructor, which is a function.  Think of a constructor function as an Init() function in ColdFusion.</p>
+	<pre><code class="prettyprint">var RealObject = function(){ //by convention constructor functions should start with a Capital Letter
+...		
+};
+var instanceOfRealObject = new RealObject();</code></pre>
+</div>
+
+<div class="slide" id="objects4">
+	<h2>Objects</h2>
+	<h3>Changing an objects prototype changes the prototype for ALL objects that share that prototype</h3>
+	<pre><code class="prettyprint">var RealObject = function (name){ 
+	this.name = name;
+};
+
+var instanceOfRealObject = new RealObject(&quot;Ryan&quot;);
+var anotherOfRealObject = new RealObject(&quot;Scott&quot;);
+
+RealObject.prototype.iRule = function(){ //we can add to a prototype at any time
+	return this.name + &quot; Rules.&quot;;
+};
+
+console.log(instanceOfRealObject.iRule());
+console.log(anotherOfRealObject.iRule());</code></pre>
+<input type="button" id="objbtn2" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var RealObject = function (name){ 
+		this.name = name;
+	};
+	
+	var instanceOfRealObject = new RealObject("Ryan");
+	var anotherOfRealObject = new RealObject("Scott");
+	
+	RealObject.prototype.iRule = function(){
+		return this.name + " Rules.";
+	};
+		
+	var objbtn2 = document.getElementById("objbtn2");
+	
+	objbtn2.addEventListener("click",function(){
+		console.log(instanceOfRealObject.iRule());
+		console.log(anotherOfRealObject.iRule());	
+	});
+	
+</script>
+
+<div class="slide" id="objects5">
 	<h2>Objects</h2>
 	<p>As shown in the for-in loop example you can use a for-in loop to loop through a objects properties.</p>
-	<p>However, theres on important thing to note.</p>
-	<pre><code class="prettyprint">
-		myStruct.foo; //Foo
-		myStruct["foo"]; //Foo
-	</code></pre>
+	<p>However, theres on important thing to note, since we are looping through an object we will be looping through all of its properties AND all of the properties an object recieved from its prototpye.</p>
 </div>
 
 <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
