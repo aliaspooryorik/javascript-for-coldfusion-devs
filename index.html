@@ -37,6 +37,14 @@
 <body class="deck-container" onload="prettyPrint()">
 
 <div class="slide" id="title-slide">
+	<ul>
+		<li>Check Microphone (make sure its not too close to your mouth)</li>
+		<li>Water</li>
+		<li>ColdFusion Started</li>
+	</ul>
+</div>
+
+<div class="slide" id="introslide">
 	<h1>JavaScript for ColdFusion Developers</h1>
 </div>
 
@@ -50,7 +58,7 @@
 <div class="slide" id="introduction">
 	<h2>Introduction</h2>
 	<p>
-		JavaScript and ColdFusion may have more in common than you may think.  In this session I'll walk you through many of the fundamentals of JavaScript and how many concepts relate to the language you love and already know, ColdFusion.  
+		JavaScript and ColdFusion have more in common than you may think.  In this session I'll walk you through many of the fundamentals of JavaScript and how many concepts relate to the language you love and already know, ColdFusion.  
 	</p>
 	<p>
 		<h3>JavaScript Objects &amp; ColdFusion Structs.</h3>
@@ -210,8 +218,8 @@ writedump(result.getClass().getName());</code></pre></p>
 	<h2>Comparisons</h2>
 	<p>In JavaScript there are two sets of comparison operators;</p>
 	<ul>
-		<li class="slide" id="comp1">Type coercion operators: == and !==</li>
-		<li class="slide" id="comp2">Non-type coercion operators: === and !===</li>
+		<li class="slide" id="comp1">Type coercion operators: == and !=</li>
+		<li class="slide" id="comp2">Non-type coercion operators: === and !==</li>
 	</ul>
 	<p class="slide" id="comp3">As a ColdFusion developer you are probabaly used to the first type of operators, also known as <strong>eq</strong> and <strong>neq</strong>.</p>	
 </div>
@@ -390,11 +398,11 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	<p><strong>If you've ONLY written CFML you'll be surprised to know that counters in JavaScript start with 0.  This is how it is in just about every other language</strong></p>
 	<h4>ColdFusion</h4>
 <pre><code class="prettyprint">for(var i = 1; i lte 100; i = i + 1){
-	...
+	//note i starts with 1 and the continue statement is less than or equal
 }</pre></code>
 	<h4>JavaScript</h4>
-<pre><code class="prettyprint">for(var i = 0; i lt 100; i = i++){
-	...
+<pre><code class="prettyprint">for(var i = 0; i &lt; 100; i = i++){
+	//note i starts with 0 and the continue statment is less than
 }</pre></code>
 </div>
 
@@ -407,8 +415,9 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	<a href="http://localhost/test.cfm?section=forin" target="_blank">myVar</a> = myStruct[key];
 }</pre></code>
 	<h3>JavaScript</h3>
-<pre><code class="prettyprint">for(var myKey in myStruct){
-	myVar = myStruct[key];
+<pre><code class="prettyprint">var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
+for(var myKey in myObj){
+	myVar = myObj[myKey];  
 }</pre></code>
 <input type="button" value="Run" id="runforin">
 </div>
@@ -427,7 +436,7 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 
 <div class="slide" id="functions">
 	<h2>Functions</h2>
-	<p>JavaScript functions are one of the most powerful features of the languages</p>
+	<p>JavaScript functions are one of the most powerful features of the language</p>
 	<p>They have many similariries to functions in ColdFusion:</p>
 	<ul>
 		<li class="slide" id="fn1">First class citizens</li>
@@ -442,7 +451,7 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	<ul>
 		<li class="slide" id="fn4">There is ONLY function scope in JavaScript.</li>
 		<li class="slide" id="fn5">You can have unnamed, or anonymous functions in JavaScript</li>
-		<li class="slide" id="fn6">Functions may have nested inner functions, more on these "enclosed" functions later.</li>
+		<li class="slide" id="fn6">Functions may have nested inner functions that share the scope with their parent functions.</li>
 	</ul>
 </div>
 
@@ -462,10 +471,10 @@ myFunc(arg1, "arg2");
 	<p>Just like in ColdFusion you can have named arguments and arguments that are outside of the named arguments.</p>
 	<p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
 	<pre><code class="prettyprint">var myFunc(){
-		console.log(arguments);
-	};
-	
-	myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});
+	console.log(arguments);
+};
+
+myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});
 </code></pre>
 <input type="button" value="Run" id="fnargs">
 </div>
@@ -486,9 +495,9 @@ myFunc(arg1, "arg2");
 	<h2>Objects</h2>
 	<p>Objects in JavaScript can be thought of as being similar to a ColdFusion struct.</p>
 	<h3>ColdFusion</h3>
-	<pre><code class="prettyprint">myStruct = {foo = &quot;foo&quot;, bar = &quot;bar&quot;, {baz=&quot;baz&quot;, pez = &quot;pez&quot;}};</code></pre>
+	<pre><code class="prettyprint"><a href="http://localhost/test.cfm?section=object" target="_blank">myStruct</a> = {foo = &quot;foo&quot;, bar = &quot;bar&quot;, {baz=&quot;baz&quot;, pez = &quot;pez&quot;}};</code></pre>
 	<h3>JavaScript</h3>
-	<pre><code class="prettyprint">myStruct = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, myFunc : function(){ //do something}}; //this is called an object literal</code></pre>
+	<pre><code class="prettyprint">myStruct = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, myFunc : function(){ return "Hello";}}; //this is called an object literal</code></pre>
 </div>
 
 <div class="slide" id="objects2">
@@ -496,6 +505,10 @@ myFunc(arg1, "arg2");
 	<p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
 	<pre><code class="prettyprint">myStruct.foo; //Foo
 myStruct["foo"]; //Foo</code></pre>
+</div>
+
+<div class="slide" id="objects6">
+	<h2>Objects</h2>
 	<p>Also similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method.</p>
 	<h3>ColdFusion</h3>
 	<pre><code class="prettyprint">structKeyExists(myStruct,"foo"); //true</code></pre>
@@ -516,7 +529,7 @@ var instanceOfRealObject = new RealObject();</code></pre>
 
 <div class="slide" id="objects4">
 	<h2>Objects</h2>
-	<h3>Changing an objects prototype changes the prototype for ALL objects that share that prototype</h3>
+	<p>Changing an objects prototype changes the prototype for ALL objects that share that prototype</p>
 	<pre><code class="prettyprint">var RealObject = function (name){ 
 	this.name = name;
 };
@@ -557,8 +570,98 @@ console.log(anotherOfRealObject.iRule());</code></pre>
 <div class="slide" id="objects5">
 	<h2>Objects</h2>
 	<p>As shown in the for-in loop example you can use a for-in loop to loop through a objects properties.</p>
-	<p>However, theres on important thing to note, since we are looping through an object we will be looping through all of its properties AND all of the properties an object recieved from its prototpye.</p>
+	<p>However, theres on important thing to note, looping through an object we will looping through all of its properties AND all of the properties of its prototpye.</p>
+	<pre><code class="prettyprint">var realRealObject = new RealObject();
+	
+realRealObject.newFunction = function(){
+	return &amp;quot;Im really real.&amp;quot;;
+}
+
+for(var myKey in realRealObject){
+	...
+}
+</code></pre>
+<input type="button" id="objInBtn" value="Run">
 </div>
+
+<script type="text/javascript" charset="utf-8">
+	var realRealObject = new RealObject();
+		
+	realRealObject.newFunction = function(){
+		return "Im really real.";
+	}
+	
+	var objInBtn = document.getElementById("objInBtn");
+	
+	objInBtn.addEventListener("click",function(){
+		for(var myKey in realRealObject){
+			console.log(myKey);
+		}	
+	});
+</script>
+
+<div class="slide" id="objects5">
+	<h2>Objects</h2>
+	<p>As we've seen before, using the hasOwnProperty method will filter out properties that belong to an objects prototype.</p>
+	<pre><code class="prettyprint">var realRealObject = new RealObject();
+	
+realRealObject.newFunction = function(){
+	return &amp;quot;Im really real.&amp;quot;;
+}
+
+for(var myKey in realRealObject){
+	if(realRealObject.hasOwnProperty(myKey)){
+		console.log(myKey);
+	}
+}
+</code></pre>
+<input type="button" id="objInBtn2" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var realRealObject = new RealObject();
+		
+	realRealObject.newFunction = function(){
+		return "Im really real.";
+	}
+	
+	var objInBtn2 = document.getElementById("objInBtn2");
+	
+	objInBtn2.addEventListener("click",function(){
+		
+		for(var myKey in realRealObject){
+			if(realRealObject.hasOwnProperty(myKey)){
+				console.log(myKey);	
+			}
+			
+		}	
+	});
+</script>
+
+<div class="slide" id="this1">
+	<h2>This</h2>
+	<p>The <code class="prettyprint">this</code> one of JavaScripts most mis-understood keywords.</p>
+	<pre><code class="prettyprint">var myObj = {myFunc : function(){ console.log(this)}};
+var myFunc = function(){
+	console.log(this);
+}</code></pre>
+<input type="button" id="this1" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var myObj = {myFunc : function(){ console.log(this)}};
+	
+	var myFunc = function(){
+		console.log(this);
+	}
+	
+	var thisBtn = document.getElementById("this1");
+	
+	thisBtn.addEventListener("click",function(){
+		console.log(myObj.myFunc());
+		console.log(myFunc());
+	});
+</script>
 
 <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
 <a href="#" class="deck-next-link" title="Next">&#8594;</a>
