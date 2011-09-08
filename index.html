@@ -196,6 +196,7 @@ writedump(result.getClass().getName());</code></pre></p>
 		<li class="slide" id="ar1">Arrays can be created with the <code class="prettyprint">var myArray = new Array()</code> keyword, or just like in ColdFusion
 			the array literal pattern: <code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code></li>
 		<li class="slide" id="ar2">Arrays can contain anything</li>
+		<li class="slide" id="ar2">Arrays in JavaScript are passed <strong>by reference</string>. Arrays in ColdFuson are passed by <strong>value</strong></li>
 	</ul>
 </div>
 
@@ -206,6 +207,7 @@ writedump(result.getClass().getName());</code></pre></p>
 		<div class="slide" id="arm2"><pre><code class="prettyprint">myArray.slice(1,2) //deletes 2 items from the array starting at position 1</code></div>
 		<div class="slide" id="arm3"><pre><code class="prettyprint">myArray.pop() //removes the last element of the array and returns it</code></div>
 		<div class="slide" id="arm4"><pre><code class="prettyprint">myArray.sort() //arraysort in CFML</code></div>
+			<div class="slide" id="arm4"><pre><code class="prettyprint">myArray.shift() //arraysort in CFML</code></div>
 </div>
 
 <div class="slide" id="operators">
