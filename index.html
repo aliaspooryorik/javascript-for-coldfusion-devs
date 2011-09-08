@@ -434,6 +434,17 @@ for(var myKey in myObj){
 	});
 </script>
 
+<div class="slide" id="foriinloops">
+	<h2>Loops</h2>
+	<p>One last thing about loops; if you are looping through an array its a good idea to cache the size of the array in a variable.</p>
+	<h3>JavaScript</h3>
+<pre><code class="prettyprint">var len = myArray.length;
+//just like in ColdFusion, var your array index variable
+for(var i = 0; i < len; i++){
+	...  
+}</pre></code>
+</div>
+
 <div class="slide" id="functions">
 	<h2>Functions</h2>
 	<p>JavaScript functions are one of the most powerful features of the language</p>
@@ -451,19 +462,24 @@ for(var myKey in myObj){
 	<ul>
 		<li class="slide" id="fn4">There is ONLY function scope in JavaScript.</li>
 		<li class="slide" id="fn5">You can have unnamed, or anonymous functions in JavaScript</li>
-		<li class="slide" id="fn6">Functions may have nested inner functions that share the scope with their parent functions.</li>
+		<li class="slide" id="fn5">There are two ways to create functions: statments and expressions.</li>
+		<li class="slide" id="fn6">Functions can be defined <i>inside</i> other functions.</li>
 	</ul>
 </div>
 
 <div class="slide" id="function3">
-	<h2>Function literal pattern</h2>
-	<pre><code class="prettyprint">var myFunc = function(args){
+	<h2>Creating Functions</h2>
+	<h3>Function Statement</h3>
+	<pre><code class="prettyprint">function myFunc(args) {
 	...		
 };
-
-//invocation
-myFunc(arg1, "arg2");
 </code></pre>	
+	<h3>Function Expression</h3>
+	<p>Function expressions don't need to be named, these are called anonymous functions</p>
+<pre><code class="prettyprint">var myFunc = function(args){
+	...		
+};
+</code></pre>		
 </div>
 
 <div class="slide" id="function4">
@@ -476,19 +492,118 @@ myFunc(arg1, "arg2");
 
 myFunc(&quot;Hello&quot;, &quot;World&quot;, function(){});
 </code></pre>
-<input type="button" value="Run" id="fnargs">
+<input type="button" value="Run" id="fnArgsBtn">
 </div>
 	
 <script type="text/javascript" charset="utf-8">
-	var funcButton = document.getElementById("fnargs");	
-
-	funcButton.addEventListener("click",function(){
-		myFunc("Hello", "World", function(){});	
-	});
-	
-	var myFunc = function(){
+	var fnArgs = function(){
 		console.log(arguments);
 	};	
+	
+	var funcButton = document.getElementById("fnArgsBtn");	
+	
+	funcButton.addEventListener("click",function(){
+		fnArgs("Hello", "World", function(){});	
+	});
+</script>
+
+<div class="slide" id="function5">
+	<h2>Function Arguments</h2>
+	<p>Since JavaScript is a type-less language its always a good idea to check the type of arguments.</p>
+	<p>To do this we are provided with the <code class="prettyprint">typeof</code> operator</p>
+	<div class="slide" id="fnArg1">
+		<pre><code class="prettyprint">console.log(typeof "hello");
+console.log(typeof 1234);
+console.log(typeof {});
+console.log(typeof []);
+console.log(typeof function(){});
+</code></pre>
+	<input type="button" name="" value="Run" id="typeOfBtn">
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var typeOfBtn = document.getElementById("typeOfBtn");
+	
+	typeOfBtn.addEventListener("click",function(){
+		console.log(typeof "hello");
+		console.log(typeof 1234);
+		console.log(typeof {});
+		console.log(typeof []);
+		console.log(typeof function(){});
+	});
+</script>
+
+<div class="slide" id="function5">
+	<h2>Function Arguments</h2>
+	<p>Hit the brakes!</p>
+	<div class="slide" id="fnArg1">
+		<pre><code class="prettyprint">
+console.log(typeof []); //object ?!? 
+</code></pre>
+	</div>
+	<p class="slide" id="fnArg2">We have to work a little harder to check for an array</p>
+	<div class="slide" id="fnArg3">
+		<pre><code class="prettyprint">//borrowed from Douglas Crockford's "JavaScript: The Good Parts"
+var is_array = function (value) {
+    return Object.prototype.toString.apply(value) === '[object Array]';
+};</code></pre>
+	</div>
+</div>
+
+<div class="slide" id="function6">
+	<h2>Closures</h2>
+	<ul>
+		<li class="slide" id="cl1">Closures are functions that are "enclosed" in another function.</li>
+		<li class="slide" id="cl2">They can access the scope of the function they are enclused in</li>
+		<li class="slide" id="cl3">They also maintain "state" of variables after the functions are run</li>
+	</ul>
+</div>
+
+<div class="slide" id="function6">
+	<h2>Contrived Closure Example</h2>
+		<pre><code class="prettyprint">var sum = function(a){
+	var total = 0;
+	var len = a.length; 
+	
+	for(var i = 0; i &lt; len; i++)
+	{
+		addToTotal(a[i]);
+	}
+	
+	function addToTotal(a){
+		total += a;
+	}
+	
+	return total;
+}
+sum([1,3,5]);
+</code></pre>
+	<input type="button" value="Run" id="closuresBtn">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var sum = function(a){
+		var total = 0;
+		var len = a.length; 
+		
+		for(var i = 0; i < len; i++)
+		{
+			addToTotal(a[i]);
+		}
+		
+		function addToTotal(a){
+			total += a;
+		}
+		return total;
+	}
+
+
+	var closuresBth = document.getElementById("closuresBtn");
+	
+	closuresBtn.addEventListener("click",function(){
+		console.log(sum([1,3,5]));
+	})
 </script>
 
 <div class="slide" id="objects">
@@ -644,8 +759,11 @@ for(var myKey in realRealObject){
 	<pre><code class="prettyprint">var myObj = {myFunc : function(){ console.log(this)}};
 var myFunc = function(){
 	console.log(this);
-}</code></pre>
-<input type="button" id="this1" value="Run">
+};
+
+myObj.myFunc();
+myFunc();</code></pre>
+<input type="button" id="thisBtn1" value="Run">
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -655,13 +773,82 @@ var myFunc = function(){
 		console.log(this);
 	}
 	
-	var thisBtn = document.getElementById("this1");
+	var thisBtn = document.getElementById("thisBtn1");
 	
 	thisBtn.addEventListener("click",function(){
-		console.log(myObj.myFunc());
-		console.log(myFunc());
+		myObj.myFunc();
+		myFunc();
 	});
 </script>
+
+<div class="slide" id="this2">
+	<h2>This</h2>
+	<p>What just happened in the function call??</p>
+	<p>In order to explain we must first take a look at the <code class="prettyprint">call</code> function</p>
+	<p>The call function can take any number of arguments, but the first one is the most important.</p>
+	<p>The first is what the context of "this" should be in the function that is called, any additional arguments are passed into the function</p>
+	<pre><code class="prettyprint">function whoAmI(){
+	console.log(&quot;I am: &quot; + this);
+	console.log(arguments);
+}
+whoAmI.call(&quot;Ryan&quot;,&quot;Hello World&quot;,undefined,{},[]);
+</pre></code>
+<input type="button" name="" value="Run" id="thisBtn2">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var thisBtn2 = document.getElementById("thisBtn2");
+	
+	function whoAmI(){
+		console.log("I am: " + this);
+		console.log(arguments)
+	}
+
+	thisBtn2.addEventListener("click",function(){
+		whoAmI.call("Ryan","Hello World",undefined,{},[]);
+	});
+</script>
+
+<div class="slide" id="this3">
+	<h2>This</h2>
+	<p>Back to our "this" example</p>
+	<pre><code class="prettyprint">var myFunc = function(){
+	console.log(this);
+}
+
+myFunc()</code></pre>
+<p>When you call a function like we do here its the same as:</p>
+<pre><code class="prettyprint">myFunc.call(window,arguments);</code></pre>
+</div>
+
+<div class="slide" id="this4">
+	<h2>This</h2>
+	<p>For a much more comprehensive look at this and function invocation read Yehuda Kat's blog post:</p>
+	<p><a href="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/" target="_blank">http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/</a></p>
+</div>
+
+<div class="slide" id="resources">
+	<h2>Resources</h2>
+	<p>You can get really good at JavaScript without spending a cent</p>
+	<ul>
+		<li>Marijn Haverbeke's <a href="http://eloquentjavascript.net/contents.html" target="_blank">Eloquent JavaScript</a></li>
+		<li>Mozilla's <a href="https://developer.mozilla.org/en/JavaScript/Reference" target="_blank">JavaScript Reference</a></li>
+		<li><a href="https://github.com/liammclennan/JavaScript-Koans" target="_blank">JavaScript Koans (shameless plug time)</a></li>
+		<li><a href="http://bonsaiden.github.com/JavaScript-Garden/#object.prototype" target="_blank">JavaScript Garden</a></li>
+		<li>Nathan's Lessons <a href="http://nathansjslessons.appspot.com/" target="_blank">Interactive JavaScript Lessons</a></li>
+	<ul>
+	<p>However I'd be remiss if I left out Douglass Crockford's "<a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">JavaScript: The Good Parts"</a></p>
+</div>
+
+<div class="slide" class="fin">
+	<h1>fin</h1>
+</div>
+
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="number" name="slidenum" id="goto-slide">
+	<input type="submit" value="Go">
+</form>
 
 <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
 <a href="#" class="deck-next-link" title="Next">&#8594;</a>
@@ -671,12 +858,6 @@ var myFunc = function(){
 	/
 	<span class="deck-status-total"></span>
 </p>
-
-<form action="." method="get" class="goto-form">
-	<label for="goto-slide">Go to slide:</label>
-	<input type="number" name="slidenum" id="goto-slide">
-	<input type="submit" value="Go">
-</form>
 
 <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
