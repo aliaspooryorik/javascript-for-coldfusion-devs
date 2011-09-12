@@ -41,6 +41,7 @@
 		<li>Check Microphone (make sure its not too close to your mouth)</li>
 		<li>Water</li>
 		<li>ColdFusion Started</li>
+		<li>Pause for questions</li>
 	</ul>
 </div>
 
@@ -97,6 +98,9 @@
 		<li class="slide" id="coverVars">
 			<h3>Variables</h3>
 		</li>
+		<li class="slide" id="coverArrays">
+			<h3>Arrays</h3>
+		</li>
 		<li class="slide" id="coverStmts">
 			<h3>Statements</h3>
 		</li>
@@ -106,11 +110,18 @@
 		<li class="slide" id="coverObj">
 			<h3>Objects</h3>
 		</li>
+		<li class="slide" id="coverThis">
+			<h3>This</h3>
+		</li>
 		<li class="slide" id="coverRes">
 			<h3>Resources</h3>
 		</li>
 	</ul>
 
+</div>
+
+<div class="slide" id="variablesTitle">
+	<h1>Variables</h1>
 </div>
 
 <div class="slide" id="variables">
@@ -189,6 +200,10 @@ writedump(result.getClass().getName());</code></pre></p>
 	
 </script>
 
+<div class="slide" id="arraysTitle">
+	<h1>Arrays</h1>
+</div>
+
 <div class="slide" id="arrays">
 	<h2>Arrays</h2>
 	<ul>
@@ -252,11 +267,16 @@ function changeArray(theArray){
 <div class="slide" id="arrays2">
 	<h2>Arrays</h2>
 	<p>Arrays are objects so they have methods:</p>
-		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.push("item 4") //arrayappend in CFML</code></div>
-		<div class="slide" id="arm2"><pre><code class="prettyprint">myArray.slice(1,2) //deletes 2 items from the array starting at position 1</code></div>
-		<div class="slide" id="arm3"><pre><code class="prettyprint">myArray.pop() //removes the last element of the array and returns it</code></div>
-		<div class="slide" id="arm4"><pre><code class="prettyprint">myArray.sort() //arraysort in CFML</code></div>
-			<div class="slide" id="arm4"><pre><code class="prettyprint">myArray.shift() //removes the first element of the array and returns it</code></div>
+		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //property in JavaScript, arrayLen function in CFML
+myArray.push("item 4") //arrayAppend in CFML
+myArray.sort() //arraysort in CFML
+myArray.slice(1,2) //deletes 2 items from the array starting at position 1
+myArray.pop() //removes the last element of the array and returns it
+myArray.shift() //removes the first element of the array and returns it</code></div>
+</div>
+
+<div class="slide" id="statementsTitle">
+	<h1>Statements</h1>
 </div>
 
 <div class="slide" id="operators">
@@ -444,6 +464,10 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	});
 </script>
 
+<div class="slide" id="loopsTitle">
+	<h1>Loops</h1>
+</div>
+
 <div class="slide" id="loops">
 	<h2>Loops</h2>
 	<h4>JavaScript has for loops, while loops, and for-in loops</h4>
@@ -499,6 +523,10 @@ for(var myKey in myObj){
 for(var i = 0; i < len; i++){
 	...  
 }</pre></code>
+</div>
+
+<div class="slide" id="functionsTitle">
+	<h1>Functions</h1>
 </div>
 
 <div class="slide" id="functions">
@@ -661,6 +689,10 @@ sum([1,3,5]);</code></pre>
 	})
 </script>
 
+<div class="slide" id="objectsTitle">
+	<h1>Objects</h1>
+</div>
+
 <div class="slide" id="objects">
 	<h2>Objects</h2>
 	<p>Objects in JavaScript can be thought of as being similar to a ColdFusion struct.</p>
@@ -691,6 +723,8 @@ myStruct["foo"]; //Foo</code></pre>
 	<p>JavaScript is NOT a true Object Ooriented language so there are no classes and no subclassing.  JavaScript uses a prototypical model to provide inheritance.</p>
 	<p>This is where things get a bit confusing becuase the "Objects" we've been creating using the object literal pattern {} don't really act like objects.</p>
 	<p>In order to create an object that acts like an object we need to use a Constructor, which is a function.  Think of a constructor function as an Init() function in ColdFusion.</p>
+	<p>You create a new instance of a constructor function by using the <code class="prettyprint">new</code> keyword.  You can think of using the new keyword on a constructr function similar to
+		using the <code class="prettyprint">new</code> keyword in ColdFusion 9, or <code class="prettyprint">createObject("myObj").init()</code> in earlier versions.</p>
 	<pre><code class="prettyprint">var RealObject = function(){ //by convention constructor functions should start with a Capital Letter
 ...		
 };
@@ -808,10 +842,19 @@ for(var myKey in realRealObject){
 	});
 </script>
 
+<div class="slide" id="thisTitle">
+	<h1>This</h1>
+</div>
+
 <div class="slide" id="this1">
 	<h2>This</h2>
 	<p>The <code class="prettyprint">this</code> one of JavaScripts most mis-understood keywords.</p>
-	<pre><code class="prettyprint">var myObj = {myFunc : function(){ console.log(this)}};
+	<pre><code class="prettyprint">var myObj = {
+	myFunc : function(){ 
+		console.log(this);
+	}
+};
+		
 var myFunc = function(){
 	console.log(this);
 };
@@ -838,16 +881,22 @@ myFunc();</code></pre>
 
 <div class="slide" id="this2">
 	<h2>This</h2>
-	<p>What just happened in the function call??</p>
-	<p>In order to explain we must first take a look at the <code class="prettyprint">call</code> function</p>
-	<p>The call function can take any number of arguments, but the first one is the most important.</p>
-	<p>The first is what the context of "this" should be in the function that is called, any additional arguments are passed into the function</p>
+	<p>What happened in the function call?  Why did this point to window and not the function?</p>
+	<p>In order to explain we must understand what "this" means in JavaScript.  This refers to the <strong>current execution context.</strong></p>
+	<p>When we called the myFunc function from within the object, the object was the current execution context.</p>
+	<p>When we called myFun() from the root of the script tag, the window object was the current execution context</p>
+</div>
+
+<div class="slide" id="this6">
+	<h2>call() and apply()</h2>
+	<p>The <code class="prettyprint">call(this,arg1,arg2,arg3,...)</code> and <code class="prettyprint">apply(this,[args])</code> functions allow you to pass the value of this as the first parameter.</p>
+	<p>The difference is that the call function takes in any number of arguments whereas the apply function takes an array of arguments as its second argument.</p>
 	<pre><code class="prettyprint">function whoAmI(){
 	console.log(&quot;I am: &quot; + this);
 	console.log(arguments);
 }
 whoAmI.call(&quot;Ryan&quot;,&quot;Hello World&quot;,undefined,{},[]);
-</pre></code>
+whoAmI.apply(&quot;Ryan&quot;,[&quot;Hello World&quot;,undefined,{},[]]);</pre></code>
 <input type="button" name="" value="Run" id="thisBtn2">
 </div>
 
@@ -861,6 +910,7 @@ whoAmI.call(&quot;Ryan&quot;,&quot;Hello World&quot;,undefined,{},[]);
 
 	thisBtn2.addEventListener("click",function(){
 		whoAmI.call("Ryan","Hello World",undefined,{},[]);
+		whoAmI.apply("Ryan",["Hello World",undefined,{},[]]);
 	});
 </script>
 
@@ -878,8 +928,43 @@ myFunc()</code></pre>
 
 <div class="slide" id="this4">
 	<h2>This</h2>
-	<p>For a much more comprehensive look at this and function invocation read Yehuda Kat's blog post:</p>
-	<p><a href="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/" target="_blank">http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/</a></p>
+	<p>Lets take a look at "this" when using a constructor function to create a new instance.</p>
+	<pre><code class="prettyprint">function Robot(name){
+		this.name = name;
+		
+		console.log(this);
+		console.log(this.name);
+}
+
+myRobot = new Robot("FerbBot");
+</code></pre>
+<input type="button" id="thisBtn4" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var thisBtn4 = document.getElementById("thisBtn4");
+	
+	thisBtn4.addEventListener("click",function(){
+		myRobot = new Robot("FerbBot");
+	});
+	
+	function Robot(name){
+		this.name = name;
+		
+		console.log(this);
+		console.log(this.name);
+	}
+</script>
+
+<div class="slide" id="this5">
+	<h2>This</h2>
+	<p>For a much more comprehensive look at this and function invocation read:
+	<p class="slide" id="yehuda">Yehuda Kat's blog post: <a href="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/" target="_blank">http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/</a></p>
+	<p class="slide" id="digiweb">Scope In JavaScript: <http://www.digital-web.com/articles/scope_in_javascript/>http://www.digital-web.com/articles/scope_in_javascript/</a></p>
+</div>
+
+<div class="slide" id="statementsTitle">
+	<h1>Resources</h1>
 </div>
 
 <div class="slide" id="resources">
@@ -889,15 +974,17 @@ myFunc()</code></pre>
 		<li>Marijn Haverbeke's <a href="http://eloquentjavascript.net/contents.html" target="_blank">Eloquent JavaScript</a></li>
 		<li>Mozilla's <a href="https://developer.mozilla.org/en/JavaScript/Reference" target="_blank">JavaScript Reference</a></li>
 		<li><a href="https://github.com/liammclennan/JavaScript-Koans" target="_blank">JavaScript Koans (shameless plug time)</a></li>
-		<li><a href="http://bonsaiden.github.com/JavaScript-Garden/#object.prototype" target="_blank">JavaScript Garden</a></li>
+		<li><a href="http://bIonsaiden.github.com/JavaScript-Garden/" target="_blank">JavaScript Garden</a></li>
+		<li>AppendTo's excellent <a href="http://learn.appendto.com" target="_blank">video lessons</a></li>
 		<li>Nathan's Lessons <a href="http://nathansjslessons.appspot.com/" target="_blank">Interactive JavaScript Lessons</a></li>
 		<li><a href="http://jsfiddle.net/" target="_blank">JSFiddle</a></li>
+		<li>This presentation of course, which is on <a href="https://github.com/bittersweetryan/javascript-for-coldfusion-devs" target="_blank">GitHub</a></li>
 	<ul>
 	<p>However I'd be remiss if I left out Douglass Crockford's "<a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">JavaScript: The Good Parts"</a></p>
 </div>
 
 <div class="slide" id="specialThanks">
-<h1>Special Thanks</h1>
+<h2>Special Thanks</h2>
 <h3>Special thanks goes to those who reviewed my presentation</h3>
 <ul>
 	<li class="slide" id="thanks1">Ben Dalton (@bendalton)</li>
