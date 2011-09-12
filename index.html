@@ -329,8 +329,8 @@ myArray.shift() //removes the first element of the array and returns it</code></
 
 <div class="slide" id="comparisons4">
 	<h2>Truthy / Falsy Values</h2>
-		<h4>Falsy Values</h4>
-		<table class="data">
+		<table class="datatable">
+			<caption>Falsy Values</caption>
 			<thead>
 			<tr>
 				<th>ColdFusion</th>
@@ -348,7 +348,7 @@ myArray.shift() //removes the first element of the array and returns it</code></
 			</tr>
 			<tr>
 				<td>"false"</td>
-				<td>"empty strings"</td>
+				<td>""</td>
 			</tr>
 			<tr>
 				<td>"no"</td>
@@ -361,8 +361,8 @@ myArray.shift() //removes the first element of the array and returns it</code></
 			</table>
 		</table>
 		
-		<h4>Truthy Values</h4>
-		<table class="data">
+		<table class="datatable">
+			<caption>Truthy Values</caption>
 			<thead>
 			<tr>
 				<th>ColdFusion</th>
@@ -396,7 +396,7 @@ myArray.shift() //removes the first element of the array and returns it</code></
 	<h2>Logical Operators</h2>
 	<p>Logical operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
 	<h3>CFML</h3>
-	<pre><code class="prettyprint">//evaluates both expressions and tests if either are true
+	<pre><code class="prettyprint">//"short circuits" and returns true if the first expression is true, if its false returns the value of the second expression.
 if(false || len("hello")){ 
 	writeoutput("<a href="http://localhost/test.cfm?section=andor" target="_blank">Hello World</a>");
 }
@@ -451,6 +451,7 @@ myFunc("andor2");
 
 <div class="slide" id="andor3">
 	<h2>Logical</h2>
+	<h3>JavaScript</h3>
 	<p>Similar to the || operator the && operator returns the first operator if it is false, otherwise it procuces the value of the second:</p>
 	<pre><code class="prettyprint">//returns the value of the first expression if its false, otherwise returns the value of the second expression
 console.log(false &amp;&amp; &quot;Foo&quot;);
