@@ -268,10 +268,15 @@ function changeArray(theArray){
 	<h2>Arrays</h2>
 	<p>Arrays are objects so they have methods:</p>
 		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //property in JavaScript, arrayLen function in CFML
+
 myArray.push("item 4") //arrayAppend in CFML
+
 myArray.sort() //arraysort in CFML
+
 myArray.slice(1,2) //deletes 2 items from the array starting at position 1
+
 myArray.pop() //removes the last element of the array and returns it
+
 myArray.shift() //removes the first element of the array and returns it</code></div>
 </div>
 
@@ -314,10 +319,10 @@ myArray.shift() //removes the first element of the array and returns it</code></
 			Use the Number object: <code class="prettyprint">Number("1")</code>
 		</li>
 		<li class="slide" id="comp2">
-			Use the parseInt function: <code class="prettyprint">parseInt("1",10) //the second parm is the radix.  For this presentation we'll just say always specify 10</code>
+			Use the parseInt function: <code class="prettyprint">parseInt("01",10) //the second parm is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.</code>
 		</li>
 		<li class="slide" id="comp3">
-			If you are sure that the value you want to convert is a string, you can use the "+" to convert a string to a number: <code class="prettyprint">+&quot;3&quot;</code>
+			If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <code class="prettyprint">+&quot;3&quot;</code>
 		</li>		
 	</ol>
 </div>
@@ -984,10 +989,11 @@ myRobot = new Robot("FerbBot");
 </div>
 
 <div class="slide" id="specialThanks">
-<h2>Special Thanks</h2>
-<h3>Special thanks goes to those who reviewed my presentation</h3>
+<h2>Special thanks goes to those who tech reviewed my presentation:</h2>
 <ul>
 	<li class="slide" id="thanks1">Ben Dalton (@bendalton)</li>
+	<li class="slide" id="thanks2">Jon Dowdle (@jdowdle)</li>
+</ul>
 </div>
 
 <div class="slide" id="fin">
