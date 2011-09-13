@@ -39,7 +39,9 @@
 <div class="slide" id="title-slide">
 	<ul>
 		<li>Check Microphone (make sure its not too close to your mouth)</li>
+		<li>1152x864</li>
 		<li>Water</li>
+		<li>Turn off all chorme extentions</li>
 		<li>ColdFusion Started</li>
 		<li>Pause for questions</li>
 	</ul>
@@ -51,7 +53,7 @@
 
 <div class="slide" id="about-me">
 <h2>About me</h2>
-<p>Do you really care? If you really want to know here's all you'll need: <a href="http://www.google.com/search?q=ryan+anklam">http://www.google.com/search?q=ryan+anklam</a></p>
+<p>Do you really care? If you really want to know here's all you'll need: <a href="http://www.google.com/search?q=ryan+anklam" target="_blank">http://www.google.com/search?q=ryan+anklam</a></p>
 <p>Here's a lol cat instead:</p>
 <img src="images/lolcats-computer-with-balloon.jpg">
 </div>
@@ -102,7 +104,7 @@
 			<h3>Arrays</h3>
 		</li>
 		<li class="slide" id="coverStmts">
-			<h3>Statements</h3>
+			<h3>Operators &amp; Statements</h3>
 		</li>
 		<li class="slide" id="coverFn">
 			<h3>Functions</h3>
@@ -129,13 +131,13 @@
 	<p>Variables in ColdFusion and JavaScript both share the same problem: poor default scoping.</p>
 	<h3>ColdFusion</h3>
 	<pre><code class="prettyprint">&lt;cffunction name=&quot;doSomething&quot; returnType=&quot;void&quot;&gt;
-	&lt;cfset myVar = &amp;quot;foo&amp;quot&gt; &lt;!---this goes into the variables scope which == bad ---&gt;
-	&lt;cfset var myOtherVar = &amp;quot;bar&amp;quot&gt; &lt;!---this goes into the local scope which == good ---&gt;		
+	&lt;cfset myVar = &quot;foo&quot;&gt; &lt;!---variables scope which == bad ---&gt;
+	&lt;cfset var myOtherVar = &quot;bar&quot;&gt; &lt;!---local scope which == good ---&gt;		
 &lt;/cffunction&gt;</code></pre>
 <h3>JavaScript</h3>
 	<pre><code class="prettyprint">function doSomething(){
-	myVar = &quot;foo&quot;; //this goes into the global scope which == bad
-	var myOtherVar = &quot;bar&quot;; //this goes into the function scope which == good		
+	myVar = &quot;foo&quot;; //global scope which == bad
+	var myOtherVar = &quot;bar&quot;; //function scope which == good		
 }</code></pre>
 </div>
 
@@ -199,6 +201,15 @@ writedump(result.getClass().getName());</code></pre></p>
 	
 	
 </script>
+
+<div class="slide" id="numbers2">
+	<h2>Numbers</h2>
+	<p>In JavaScript there is also a special value, <code class="prettyprint">NaN</code>, which stands for "not a number"</p>
+	<ul>
+		<li class="slide" id="nan1">NaN is False</li>
+		<li class="slide" id="nan2">NaN !== NaN</li>
+	</ul>
+</div>
 
 <div class="slide" id="arraysTitle">
 	<h1>Arrays</h1>
@@ -281,7 +292,7 @@ myArray.shift() //removes the first element of the array and returns it</code></
 </div>
 
 <div class="slide" id="statementsTitle">
-	<h1>Statements</h1>
+	<h1>Operators &amp; Statements</h1>
 </div>
 
 <div class="slide" id="operators">
@@ -396,10 +407,10 @@ myArray.shift() //removes the first element of the array and returns it</code></
 	<h2>Logical Operators</h2>
 	<p>Logical operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
 	<h3>CFML</h3>
-	<pre><code class="prettyprint">//"short circuits" and returns true if the first expression is true, if its false returns the value of the second expression.
-if(false || len("hello")){ 
-	writeoutput("<a href="http://localhost/test.cfm?section=andor" target="_blank">Hello World</a>");
-}
+	<pre><code class="prettyprint">&lt;!-- short circuits and returns true if the first expression is true, if its false returns the value of the second expression.--&gt;
+&lt;cfif true OR len(&quot;hello&quot;)&gt; 
+	&lt;cfset myVar = &quot;<a href="http://localhost/test.cfm?section=andor" target="_blank">Hello World</a>" /&gt;
+&lt;/cfif&gt;
 </code>
 </pre>
 	<h3>JavaScript</h3>
@@ -519,16 +530,16 @@ for(var myKey in myObj){
 
 <div class="slide" id="foriinloops1">
 	<h2>Loops</h2>
-	<p>A few last things abotu loops</p>
+	<p>A few last things about loops</p>
 	<ul>
 		<li class="slide" id="fi1">If you are looping through an array its a good idea to cache the size of the array in a variable.</li>
 		<li class="slide" id="fi2">Also, var your iteration variable</li>
 	</ul>
-<pre><code class="prettyprint">var len = myArray.length;
+<div class="slide" id="loopscode1"><pre><code class="prettyprint">var len = myArray.length;
 //just like in ColdFusion, var your array index variable
 for(var i = 0; i < len; i++){
 	...  
-}</pre></code>
+}</code></pre></div>
 </div>
 
 <div class="slide" id="functionsTitle">
@@ -538,7 +549,7 @@ for(var i = 0; i < len; i++){
 <div class="slide" id="functions">
 	<h2>Functions</h2>
 	<p>JavaScript functions are one of the most powerful features of the language</p>
-	<p>They have many similariries to functions in ColdFusion:</p>
+	<p>They have many similarities to functions in ColdFusion:</p>
 	<ul>
 		<li class="slide" id="fn1">First class citizens</li>
 		<li class="slide" id="fn2">Arguments are type-less, it would be the same as having all arguments having <code class="prettyprint">type="any"</code></li>
@@ -644,54 +655,47 @@ var is_array = function (value) {
 <div class="slide" id="function6">
 	<h2>Closures</h2>
 	<ul>
-		<li class="slide" id="cl1">Closures are functions that are "enclosed" in another function.</li>
-		<li class="slide" id="cl2">They can access the scope of the function they are enclused in</li>
-		<li class="slide" id="cl3">They also maintain "state" of variables after the functions are run</li>
+		<li class="slide" id="cl1">Closures are functions that are enclosed, and returned within the context of another function.</li>
+		<li class="slide" id="cl2">The execution context of the outer function is saved wrapped around the inner function.</li>
+		<li class="slide" id="cl3">This effictivley saves the "state" of the outer functions variables.</li>
 	</ul>
 </div>
 
 <div class="slide" id="function6">
 	<h2>Contrived Closure Example</h2>
-		<pre><code class="prettyprint">var sum = function(a){
+		<pre><code class="prettyprint">var timesCalled = function(){
 	var total = 0;
-	var len = a.length; 
 	
-	for(var i = 0; i &lt; len; i++)
-	{
-		addToTotal(a[i]);
+	return function(){
+		total++;
+		console.log(total);
 	}
 	
-	function addToTotal(a){
-		total += a;
-	}
-	
-	return total;
-}
-sum([1,3,5]);</code></pre>
+};
+
+var callTimer = timesCalled(); //this call right here creates the closure
+
+callTimer();</code></pre>
 	<input type="button" value="Run" id="closuresBtn">
 </div>
 
 <script type="text/javascript" charset="utf-8">
-	var sum = function(a){
+	var timesCalled = function(){
 		var total = 0;
-		var len = a.length; 
 		
-		for(var i = 0; i < len; i++)
-		{
-			addToTotal(a[i]);
+		return function(){
+			total++;
+			console.log(total);
 		}
 		
-		function addToTotal(a){
-			total += a;
-		}
-		return total;
-	}
-
+	};
 
 	var closuresBtn = document.getElementById("closuresBtn");
 	
-	closuresBtn.addEventListener("click",function(){
-		console.log(sum([1,3,5]));
+	var callTimer = timesCalled();
+	
+	closuresBtn.addEventListener("click",function(){	
+		callTimer();
 	})
 </script>
 
@@ -708,14 +712,14 @@ sum([1,3,5]);</code></pre>
 	<pre><code class="prettyprint">myStruct = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, myFunc : function(){ return "Hello";}}; //this is called an object literal</code></pre>
 </div>
 
-<div class="slide" id="objects2">
+<div class="slide" id="objects1">
 	<h2>Objects</h2>
 	<p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
 	<pre><code class="prettyprint">myStruct.foo; //Foo
 myStruct["foo"]; //Foo</code></pre>
 </div>
 
-<div class="slide" id="objects6">
+<div class="slide" id="objects2">
 	<h2>Objects</h2>
 	<p>Also similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method.</p>
 	<h3>ColdFusion</h3>
@@ -724,30 +728,40 @@ myStruct["foo"]; //Foo</code></pre>
 	<pre><code class="prettyprint">myStruct.hasOwnProperty("foo"); //true</code></pre>
 </div>
 
-<div class="slide" id="objects3">
-	<h2>Objects</h2>
-	<p>JavaScript is NOT a true Object Ooriented language so there are no classes and no subclassing.  JavaScript uses a prototypical model to provide inheritance.</p>
-	<p>This is where things get a bit confusing becuase the "Objects" we've been creating using the object literal pattern {} don't really act like objects.</p>
-	<p>In order to create an object that acts like an object we need to use a Constructor, which is a function.  Think of a constructor function as an Init() function in ColdFusion.</p>
-	<p>You create a new instance of a constructor function by using the <code class="prettyprint">new</code> keyword.  You can think of using the new keyword on a constructr function similar to
+<div class="slide" id="objects4">
+	<h2>Constructor</h2>
+	<p class="slide" id="objects32">This is where things get a bit confusing becuase the "Objects" we've been creating using the object literal pattern {} don't really act like objects.</p>
+	<p class="slide" id="objects33">In order to create an object that acts like an object we need to use a Constructor, which is a function.  Think of a constructor function as an Init() function in ColdFusion.</p>
+	<p class="slide" id="objects34">You create a new instance of an object by using the <code class="prettyprint">new</code> keyword on the constructor function.  You can think of using the new keyword on a constructr function similar to
 		using the <code class="prettyprint">new</code> keyword in ColdFusion 9, or <code class="prettyprint">createObject("myObj").init()</code> in earlier versions.</p>
-	<pre><code class="prettyprint">var RealObject = function(){ //by convention constructor functions should start with a Capital Letter
-...		
+		
+	<div class="slide" id="objects33">
+	<pre><code class="prettyprint">//by convention constructor functions should start with a Capital Letter
+var RealObject = function(){ 
+	...		
 };
-var instanceOfRealObject = new RealObject();</code></pre>
+
+var instanceOfRealObject = new RealObject();</code></pre></div>
 </div>
 
-<div class="slide" id="objects4">
-	<h2>Objects</h2>
-	<p>Changing an objects prototype changes the prototype for ALL objects that share that prototype</p>
-	<pre><code class="prettyprint">var RealObject = function (name){ 
+<div class="slide" id="objects3">
+	<h2>Objects & Inheritence</h2>
+	<p class="slide" id="objects31">In JavaScript i are no concepts classes or subclassing, however, JavaScript objects can get functions and properties from other objects.</p>
+	<p class="slide" id="objects35">JavaScript uses a prototypical model to provide inheritance. An "Object" is comprised of its properties + those of its prototpye + those of its prototype's prototpye, and so on.</p>	
+	<p class="slide" id="objects36">Changing an objects prototype changes the prototype for ALL objects that share that prototype, even after they've been created.</p>
+</div>
+
+<div class="slide" id="objects37">
+	<h2>Objects & Inheritence</h2>
+	<pre><code class="prettyprint">function RealObject(name){ 
 	this.name = name;
 };
 
 var instanceOfRealObject = new RealObject(&quot;Ryan&quot;);
 var anotherOfRealObject = new RealObject(&quot;Scott&quot;);
 
-RealObject.prototype.iRule = function(){ //we can add to a prototype at any time
+//we can add to a prototype at any time
+RealObject.prototype.iRule = function(){ 
 	return this.name + &quot; Rules.&quot;;
 };
 
@@ -757,7 +771,7 @@ console.log(anotherOfRealObject.iRule());</code></pre>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-	var RealObject = function (name){ 
+	function RealObject (name){ 
 		this.name = name;
 	};
 	
@@ -777,17 +791,17 @@ console.log(anotherOfRealObject.iRule());</code></pre>
 	
 </script>
 
-<div class="slide" id="objects5">
+<div class="slide" id="objects6">
 	<h2>Objects</h2>
 	<p>As shown in the for-in loop example you can use a for-in loop to loop through a objects properties.</p>
 	<p>However, theres on important thing to note, looping through an object we will looping through all of its properties AND all of the properties of its prototpye.</p>
-	<pre><code class="prettyprint">var realRealObject = new RealObject();
-	
-realRealObject.newFunction = function(){
-	return &amp;quot;Im really real.&amp;quot;;
+	<pre><code class="prettyprint">var anotherRealObject = new RealObject(); //remember we added a function, iRule to the RealObjects prototpye
+
+anotherRealObject.newFunction = function(){
+	return &quot;Im another real object.&quot;;
 }
 
-for(var myKey in realRealObject){
+for(var myKey in anotherRealObject){
 	...
 }
 </code></pre>
@@ -795,32 +809,32 @@ for(var myKey in realRealObject){
 </div>
 
 <script type="text/javascript" charset="utf-8">
-	var realRealObject = new RealObject();
+	var anotherRealObject = new RealObject();
 		
-	realRealObject.newFunction = function(){
-		return "Im really real.";
+	anotherRealObject.newFunction = function(){
+		return "Im another real object.";
 	}
 	
 	var objInBtn = document.getElementById("objInBtn");
 	
 	objInBtn.addEventListener("click",function(){
-		for(var myKey in realRealObject){
+		for(var myKey in anotherRealObject){
 			console.log(myKey);
 		}	
 	});
 </script>
 
-<div class="slide" id="objects5">
+<div class="slide" id="objects7">
 	<h2>Objects</h2>
 	<p>As we've seen before, using the hasOwnProperty method will filter out properties that belong to an objects prototype.</p>
-	<pre><code class="prettyprint">var realRealObject = new RealObject();
+	<pre><code class="prettyprint">var anotherRealObject = new RealObject();
 	
-realRealObject.newFunction = function(){
-	return &amp;quot;Im really real.&amp;quot;;
+anotherRealObject.newFunction = function(){
+	return &quot;Im another real object.&quot;;
 }
 
-for(var myKey in realRealObject){
-	if(realRealObject.hasOwnProperty(myKey)){
+for(var myKey in anotherRealObject){
+	if(anotherRealObject.hasOwnProperty(myKey)){
 		console.log(myKey);
 	}
 }
@@ -829,18 +843,12 @@ for(var myKey in realRealObject){
 </div>
 
 <script type="text/javascript" charset="utf-8">
-	var realRealObject = new RealObject();
-		
-	realRealObject.newFunction = function(){
-		return "Im really real.";
-	}
-	
 	var objInBtn2 = document.getElementById("objInBtn2");
 	
 	objInBtn2.addEventListener("click",function(){
 		
-		for(var myKey in realRealObject){
-			if(realRealObject.hasOwnProperty(myKey)){
+		for(var myKey in anotherRealObject){
+			if(anotherRealObject.hasOwnProperty(myKey)){
 				console.log(myKey);	
 			}
 			
