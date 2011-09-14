@@ -206,8 +206,9 @@ writedump(result.getClass().getName());</code></pre></p>
 	<h2>Numbers</h2>
 	<p>In JavaScript there is also a special value, <code class="prettyprint">NaN</code>, which stands for "not a number"</p>
 	<ul>
-		<li class="slide" id="nan1">NaN is False</li>
-		<li class="slide" id="nan2">NaN !== NaN</li>
+		<li class="slide" id="nan1"><code class="prettyprint">NaN is False</code></li>
+		<li class="slide" id="nan2"><code class="prettyprint">NaN !== NaN</code></li>
+		<li class="slide" id="na3">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
 	</ul>
 </div>
 
@@ -278,13 +279,13 @@ function changeArray(theArray){
 <div class="slide" id="arrays2">
 	<h2>Arrays</h2>
 	<p>Arrays are objects so they have methods:</p>
-		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //property in JavaScript, arrayLen function in CFML
+		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //arrayLen() function in CFML, a property in JavaScript
 
 myArray.push("item 4") //arrayAppend in CFML
 
 myArray.sort() //arraysort in CFML
 
-myArray.slice(1,2) //deletes 2 items from the array starting at position 1
+myArray.splice(1,2) //deletes 2 items from the array starting at position 1
 
 myArray.pop() //removes the last element of the array and returns it
 
