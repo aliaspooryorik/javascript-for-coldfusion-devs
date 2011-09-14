@@ -178,9 +178,10 @@ console.log(myOtherVar); //error
 		<li class="slide" id="var1">
 			<p>All numbers in JavaScript are 64 bit floating point numbers.</p>
 			<p><pre><codeclass="prettyprint">0.06 + 0.01 = <a href="#" id="numberButton">??</a></code></pre></p>
+			<p><a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
 		</li>
 		<li class="slide" id="var2">
-			<p>In ColdFusion the result of a mathimaitical expression is a java.lang.Double which is more precise and will give you the expected value.</p>
+			<p>ColdFusion does some magic behind the scene which will give you the expected value.</p>
 			<p><pre><code class="prettyprint">result = 0.06 + 0.01;
 	
 writedump(<a href="http://localhost/test.cfm?section=numbers" target="_blank">result</a>);
@@ -747,7 +748,7 @@ var instanceOfRealObject = new RealObject();</code></pre></div>
 
 <div class="slide" id="objects3">
 	<h2>Objects & Inheritence</h2>
-	<p class="slide" id="objects36">In JavaScript i are no concepts classes or subclassing, however, JavaScript objects can get functions and properties from other objects.</p>
+	<p class="slide" id="objects36">In JavaScript there is no concept of classes or subclassing, however, JavaScript objects can get functions and properties from other objects.</p>
 	<p class="slide" id="objects37">JavaScript uses a prototypical model to provide inheritance. An "Object" is comprised of its properties + those of its prototpye + those of its prototype's prototpye, and so on.</p>	
 	<p class="slide" id="objects38">Changing an objects prototype changes the prototype for ALL objects that share that prototype, even after they've been created.</p>
 </div>
