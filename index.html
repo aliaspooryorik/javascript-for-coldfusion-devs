@@ -796,6 +796,39 @@ console.log(anotherOfRealObject.iRule());</code></pre>
 	
 </script>
 
+<div class="slide" id="objects9">
+	<h2>Prototype on native Objects</h2>
+	<p>You can also change the prototypes of the native objects like Object or Array</p>
+	<p>Since there is no "deep copy" method availabe to arryas, lets add one.</p>
+	<pre><code class="prettyprint">Array.prototype.deepCopy = function(){
+	return this.slice(); //this refers to the array object.  
+}
+
+var myArray = [&quot;Apple&quot;,&quot;Peach&quot;,&quot;Pear&quot;];
+var copiedArray = myArray.deepCopy();
+
+copiedArray[0] = &quot;Banana&quot;;</code></pre>
+<input type="button" id="objBtn9" value="Run">
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var objBtn9 = document.getElementById("objBtn9");
+	
+	Array.prototype.deepCopy = function(){
+		return this.slice(); //this refers to the array object.  
+	}
+
+	objBtn9.addEventListener("click",function(){
+		var myArray = ["Apple","Peach","Pear"];
+		var copiedArray = myArray.deepCopy();
+		
+		copiedArray[0] = "Banana";
+		
+		console.log(myArray);
+		console.log(copiedArray);
+	});
+</script>
+
 <div class="slide" id="objects6">
 	<h2>Objects</h2>
 	<p>As shown in the for-in loop example you can use a for-in loop to loop through a objects properties.</p>
