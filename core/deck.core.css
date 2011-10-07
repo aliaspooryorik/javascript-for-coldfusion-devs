@@ -248,6 +248,9 @@ html {
   padding: .25em 0;
   vertical-align: middle;
 }
+.deck-container.deck-loading {
+  display: none;
+}
 
 .slide {
   width: auto;
@@ -387,12 +390,4 @@ body.deck-container {
   script {
     display: none;
   }
-}
-
-table.data{
-	width: 900px;
-}
-
-table th{
-	text-aligh: left;
 }

@@ -135,13 +135,19 @@ that use the API provided by core.
 		init: function(elements, opts) {
 			var startTouch,
 			$c,
-			tolerance;
+			tolerance,
+			esp = function(e) {
+				e.stopPropagation();
+			};
 			
 			options = $.extend(true, {}, $[deck].defaults, opts);
 			slides = [];
 			current = 0;
 			$c = $[deck]('getContainer');
 			tolerance = options.touch.swipeTolerance;
+			
+			// Hide the deck while states are being applied to kill transitions
+			$c.addClass(options.classes.loading);
 			
 			// Fill slides array depending on parameter type
 			if ($.isArray(elements)) {
@@ -196,7 +202,10 @@ that use the API provided by core.
 					}
 				});
 			})
-			.scrollLeft(0).scrollTop(0);
+			.scrollLeft(0).scrollTop(0)
+			/* Stop propagation of key events within editable elements of slides */
+			.undelegate('input, textarea, select, button, meter, progress, [contentEditable]', 'keydown', esp)
+			.delegate('input, textarea, select, button, meter, progress, [contentEditable]', 'keydown', esp);
 			
 			/*
 			Kick iframe videos, which dont like to redraw w/ transforms.
@@ -215,6 +224,9 @@ that use the API provided by core.
 			});
 			
 			updateStates();
+			
+			// Show deck again now that slides are in place
+			$c.removeClass(options.classes.loading);
 			$d.trigger(events.initialize);
 		},
 		
@@ -350,6 +362,14 @@ that use the API provided by core.
 	options.classes.current
 		This class is added to the current slide.
 		
+	options.classes.loading
+		This class is applied to the deck container during loading phases and is
+		primarily used as a way to short circuit transitions between states
+		where such transitions are distracting or unwanted.  For example, this
+		class is applied during deck initialization and then removed to prevent
+		all the slides from appearing stacked and transitioning into place
+		on load.
+		
 	options.classes.next
 		This class is added to the slide immediately following the 'current'
 		slide.
@@ -384,6 +404,7 @@ that use the API provided by core.
 			before: 'deck-before',
 			childCurrent: 'deck-child-current',
 			current: 'deck-current',
+			loading: 'deck-loading',
 			next: 'deck-next',
 			onPrefix: 'on-slide-',
 			previous: 'deck-previous'
@@ -420,8 +441,12 @@ that use the API provided by core.
 		newFrames = $[deck]('getSlide', to).find('iframe');
 		
 		oldFrames.each(function() {
-			var $this = $(this);
-			$this.data('deck-src', $this.attr('src')).attr('src', '');
+	    	var $this = $(this),
+	    	curSrc = $this.attr('src');
+            
+            if(curSrc) {
+            	$this.data('deck-src', curSrc).attr('src', '');
+            }
 		});
 		
 		newFrames.each(function() {
