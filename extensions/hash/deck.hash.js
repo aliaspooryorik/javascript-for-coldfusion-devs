@@ -1,5 +1,5 @@
 /*!
-Deck JS - deck.hash - v1.0
+Deck JS - deck.hash
 Copyright (c) 2011 Caleb Troughton
 Dual licensed under the MIT license and GPL license.
 https://github.com/imakewebthings/deck.js/blob/master/MIT-license.txt
@@ -12,7 +12,9 @@ to slides within decks, and updates the address bar with the hash as the user
 moves through the deck. A permalink anchor is also updated. Standard themes
 hide this link in browsers that support the History API, and show it for
 those that do not. Slides that do not have an id are assigned one according to
-the hashPrefix option.
+the hashPrefix option. In addition to the on-slide container state class
+kept by core, this module adds an on-slide state class that uses the id of each
+slide.
 */
 (function ($, deck, window, undefined) {
 	var $d = $(document),
@@ -35,6 +37,9 @@ the hashPrefix option.
 				return false;
 			}
 		});
+		
+		// If we don't set these to 0 the container scrolls due to hashchange
+		$[deck]('getContainer').scrollLeft(0).scrollTop(0);
 	};
 	
 	/*
@@ -59,14 +64,17 @@ the hashPrefix option.
 	
 	
 	$d.bind('deck.init', function() {
-		$internals = $();
+	   var opts = $[deck]('getOptions');
+		$internals = $(),
+		slides = $[deck]('getSlides');
 		
-		$.each($[deck]('getSlides'), function(i, $el) {
+		$.each(slides, function(i, $el) {
 			var hash;
 			
 			/* Hand out ids to the unfortunate slides born without them */
-			if (!$el.attr('id')) {
-				$el.attr('id', $[deck]('getOptions').hashPrefix + i);
+			if (!$el.attr('id') || $el.data('deckAssignedId') === $el.attr('id')) {
+				$el.attr('id', opts.hashPrefix + i);
+				$el.data('deckAssignedId', opts.hashPrefix + i);
 			}
 			
 			hash ='#' + $el.attr('id');
@@ -87,12 +95,23 @@ the hashPrefix option.
 				goByHash($(this).attr('href'));
 			});
 		}
-	})
-	/* Update permalink and address bar on a slide change */
-	.bind('deck.change', function(e, from, to) {
-		var hash = '#' + $[deck]('getSlide', to).attr('id');
 		
-		$($[deck]('getOptions').selectors.hashLink).attr('href', hash);
+		/* Set up first id container state class */
+		if (slides.length) {
+			$[deck]('getContainer').addClass(opts.classes.onPrefix + $[deck]('getSlide').attr('id'));
+		};
+	})
+	/* Update permalink, address bar, and state class on a slide change */
+	.bind('deck.change', function(e, from, to) {
+		var hash = '#' + $[deck]('getSlide', to).attr('id'),
+		opts = $[deck]('getOptions'),
+		osp = opts.classes.onPrefix,
+		$c = $[deck]('getContainer');
+		
+		$c.removeClass(osp + $[deck]('getSlide', from).attr('id'));
+		$c.addClass(osp + $[deck]('getSlide', to).attr('id'));
+		
+		$(opts.selectors.hashLink).attr('href', hash);
 		if (Modernizr.history) {
 			window.history.replaceState({}, "", hash);
 		}
