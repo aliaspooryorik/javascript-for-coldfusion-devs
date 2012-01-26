@@ -1,6 +1,6 @@
 #JavaScript Fundamentals for ColdFusion Developers
 
-* ###Introduction
+###Introduction
 	* Assumptions
 	* What this presentation will cover
 		* Variables
@@ -13,33 +13,33 @@
 		* Scope & This
 		* Unit Testing
 		* Giveaway 
-* ###Variables
+###Variables
 	* Default Scoping
 	* Numbers
 		* ParseInt
 		* Number()
 	* NaN
-* ###Arrays
+###Arrays
 	* Properties
 	* new Array
 	* literals
 	* passed by reference vs by value
 	* methods
-* ###Operators
+###Operators
 	* Comparison
 	* == vs ===
 	* Truthy / Falsy
 	* Logical
-* ###Loops
+###Loops
 	* for
 	* while
 	* for-in
 	* best practices
-* ###Objects
+###Objects
 	* introduction
 	* accessing properties
 	* hasOwnProperty
-* ###Functions
+###Functions
 	* introduction
 	* compare JS & CF
 	* statements vs expressions
@@ -47,18 +47,18 @@
 		* type checking
 	* closures
 		* example	
-* ###Inheritance
+###Inheritance
 	* constructor
 	* prototype
 	* augmenting native constructor functions
-* Scope 
+###Scope 
 	* this
 	* call & apply
 	* new keyword
 	* functions
 	* nested functions
 		* lexical scoping
-* Unit Testing
+###Unit Testing
 	* very brief intro
 	* TDD vs BDD
 	* qUnit vs jasmine
@@ -68,6 +68,6 @@
 	* dom objects
 		*qUnit
 		*jasmine
-*Giveaway
+###Giveaway
 
 
