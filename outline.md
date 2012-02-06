@@ -1,6 +1,7 @@
 #JavaScript Fundamentals for ColdFusion Developers
 
 ###Introduction
+* About Me
 * Assumptions
 * What this presentation will cover
 	* Variables
@@ -8,11 +9,19 @@
 	* Operators
 	* Loops
 	* Objects
+	* Scope
 	* Functions
-	* Prototype
-	* Scope & This
+	* Inheritance
 	* Unit Testing
 	* Giveaway 
+* What this presentation will NOT Cover
+    * DOM 
+    * frameworks
+
+### About Me
+* Work History
+* Open Source Work
+* JavaScript Work
 
 ###Variables
 * Default Scoping
@@ -45,6 +54,14 @@
 * accessing properties
 * hasOwnProperty
 
+###Scope & This
+* this
+* call & apply
+* new keyword
+* functions
+* nested functions
+	* lexical scoping
+
 ###Functions
 * introduction
 * compare JS & CF
@@ -52,20 +69,13 @@
 * arguments
 	* type checking
 * closures
-	* example	
+	* example (not a closure)
+	* example (is a closure)	
 
 ###Inheritance
 * constructor
 * prototype
 * augmenting native constructor functions
-
-###Scope 
-* this
-* call & apply
-* new keyword
-* functions
-* nested functions
-	* lexical scoping
 
 ###Unit Testing
 * very brief intro
@@ -74,7 +84,7 @@
 * basics
 	* setup qUnit / jasmine
 	* creating your tests (use examples from the preso)
-* dom objects
+* dom objects (ok I lied in the assumptions)
 	*qUnit
 	*jasmine
 
