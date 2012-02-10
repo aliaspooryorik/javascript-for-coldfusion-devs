@@ -70,7 +70,8 @@
 	* type checking
 * closures
 	* example (not a closure)
-	* example (is a closure)	
+	* example (is a closure)
+* variable and function hoisting	
 
 ###Inheritance
 * constructor
