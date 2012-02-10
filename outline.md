@@ -33,9 +33,15 @@
 ###Arrays
 * Properties
 * new Array
-* literals
+* Literals
 * passed by reference vs by value
-* methods
+* Methods
+	* join
+	* pop
+	* shift
+	* splice
+	* slice
+	* use "split" to turn a string into an array
 
 ###Operators
 * Comparison
@@ -88,6 +94,17 @@
 * dom objects (ok I lied in the assumptions)
 	*qUnit
 	*jasmine
+
+###Resources
+* MDN
+* jsFiddle
+* Eloquent JavaScript
+* JavaScript Koans
+* JavaScript Zen Garden
+* JSMentors Google Group
+* JSC for mac users
+* Crockford's JavaScript: The Good Parts
+* Cody Lindley's Javascript Enlightment
 
 ###Giveaway
 
