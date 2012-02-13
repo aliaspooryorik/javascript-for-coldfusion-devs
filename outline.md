@@ -1,6 +1,8 @@
 #JavaScript Fundamentals for ColdFusion Developers
 
 ###Introduction
+* About JavaScript Fundamentals for ColdFusion Developers
+     * https://github.com/topherj/cfjs
 * About Me
 * Assumptions
 * What this presentation will cover
