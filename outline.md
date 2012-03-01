@@ -99,6 +99,7 @@
 
 ###Resources
 * MDN
+* jsLint
 * jsFiddle
 * Eloquent JavaScript
 * JavaScript Koans
