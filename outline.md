@@ -44,6 +44,7 @@
 	* splice
 	* slice
 	* use "split" to turn a string into an array
+ * Arrays don't optimize like you think they would. (Passing array[0] actually gets converted to array["0"]
 
 ###Operators
 * Comparison
