@@ -52,19 +52,11 @@
 	<h1>JavaScript Fundamentals for ColdFusion Developers</h1>
 </div>
 
-<div class="slide" id="about-me">
-	<h2>About me</h2>
-	<p>Instead of spending time talking about my "street cred" lets look at a lolcat instead.</p>
-	<p>If you really want to know here's all you'll need: <a href="http://www.google.com/search?q=ryan+anklam" target="_blank">http://www.google.com/search?q=ryan+anklam</a></p>
-	<img src="images/lolcats-computer-with-balloon.jpg">
-</div>
-
 <div class="slide" id="introduction">
 	<h2>Introduction</h2>
 	<p>
 		JavaScript and ColdFusion have more in common than you may think.  In this session I'll walk you through many of the fundamentals of JavaScript and how many concepts relate to the language you love and already know, ColdFusion.  
 	</p>
-	<p>
 		<h4>ColdFusion</h4>
 		<pre><code class="prettyprint">var obj = {
 	key = &quot;value&quot;,
@@ -75,7 +67,27 @@
 	key : &quot;value&quot;,
 	foo : &quot;bar&quot;
 }</code></pre>
-</p>
+</div>
+
+<div class="slide" id="about-me">
+	<h2>About me</h2>
+	<ul>
+		<li>Technical Solutions Architect at IDL Solutions, INC.</li>
+		<li>ColdFusion developer since 1996</li>
+		<li>Open Source</li>
+		<li>
+			Author
+			<ul>
+				<li>CokdFusion Koans</li>
+				<li>CFEvernote</li>
+			</ul>
+			Contribuitor
+			<ul>
+				<li>JavaScript Koans</li>
+				<li>MXUnit</li>
+			</ul>
+		</li>
+	</ul>
 </div>
 
 <div class="slide" id="asumptions">
@@ -97,14 +109,8 @@
 <div class="slide" id="what-well-cover">
 	<h2>What we'll cover</h2>
 	<ul>
-		<li class="slide" id="coverVars">
-			<h3>Variables</h3>
-		</li>
-		<li class="slide" id="coverArrays">
-			<h3>Arrays</h3>
-		</li>
-		<li class="slide" id="coverStmts">
-			<h3>Operators</h3>
+		<li class="slide" id="basics">
+			Basics  (variables, loops, arrays, etc)
 		</li>
 		<li class="slide" id="coverFn">
 			<h3>Functions</h3>
@@ -112,8 +118,20 @@
 		<li class="slide" id="coverObj">
 			<h3>Objects</h3>
 		</li>
+		<li class="slide" id="coverScopte">
+			<h3>Scope</h3>
+		</li>
+		<li class="slide" id="coverFunctions">
+			<h3>Functions</h3>
+		</li>
+		<li class="slide" id="coverInheritance">
+			<h3>Inheritance</h3>
+		</li>
 		<li class="slide" id="coverThis">
 			<h3>This</h3>
+		</li>
+		<li class="slide" id="coverUnitTesting">
+			<h3>Testing</h3>
 		</li>
 		<li class="slide" id="coverRes">
 			<h3>Resources</h3>
@@ -177,7 +195,9 @@ console.log(myOtherVar); //error
 	<ul>
 		<li class="slide" id="var1">
 			<p>All numbers in JavaScript are 64 bit floating point numbers.</p>
-			<p><pre><codeclass="prettyprint">0.06 + 0.01 = <a href="#" id="numberButton">??</a></code></pre></p>
+			<p>
+				<pre><code class="prettyprint">0.06 + 0.01 = <a href="#" id="numberButton">??</a></code></pre>
+			</p>
 			<p><a href="http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html">http://download.oracle.com/docs/cd/E19957-01/806-3568/ncg_goldberg.html</a></p>
 		</li>
 		<li class="slide" id="var2">
@@ -189,7 +209,7 @@ String = createObject(&quot;java&quot;,&quot;java.lang.String&quot;);
 writedump(<a href="http://localhost/test.cfm?section=numbers" target="_blank">result</a>);
 writedump(String.valueOf(result));</code></pre></p>
 		</li>
-	<ul>
+	</ul>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -200,8 +220,6 @@ writedump(String.valueOf(result));</code></pre></p>
 		console.log("0.06 + 0.01 = " + result);	
 		e.preventDefault();
 	});
-	
-	
 </script>
 
 <div class="slide" id="numbers2">
@@ -225,8 +243,8 @@ writedump(String.valueOf(result));</code></pre></p>
 		<li class="slide" id="ar1">Arrays can be created two ways.  The first is to use the new keyword like so: <code class="prettyprint">var myArray = new Array()</code> which is similar to ColdFuison's <code class="prettyprint">ArrayNew(1)</code>, or just like in ColdFusion
 			using the array literal pattern: <code class="prettyprint">var myArray = ["item1", "item2", myObj, []];</code>.</li>
 		<li class="slide" id="ar2">In order to create multi-dimensional arrays in JavaScript you nest arrays: <code class="prettyprint">myArray[0] = ["nested one", "nested two"];<br>myArray[0][1]; //nested two</code></li>
-		<li class="slide" id="ar2">Arrays can contain anything.</li>
-		<li class="slide" id="ar2">Arrays in JavaScript are passed <strong>by reference</strong>. Arrays in ColdFuson are passed by <strong>value</strong>.</li>
+		<li class="slide" id="ar3">Arrays can contain anything.</li>
+		<li class="slide" id="ar4">Arrays in JavaScript are passed <strong>by reference</strong>. Arrays in ColdFuson are passed by <strong>value</strong>.</li>
 	</ul>
 </div>
 
@@ -293,7 +311,7 @@ myArray.splice(1,2) //deletes 2 items from the array starting at position 1
 
 myArray.pop() //removes the last element of the array and returns it
 
-myArray.shift() //removes the first element of the array and returns it</code></div>
+myArray.shift() //removes the first element of the array and returns it</code></pre></div>
 </div>
 
 <div class="slide" id="statementsTitle">
@@ -331,13 +349,13 @@ myArray.shift() //removes the first element of the array and returns it</code></
 	<h3>If I'm using === and I know "1" is a numeric value how do I get "1" to equal 1?</h3>
 	<p>There are a few ways,some of the most common are:</p>
 	<ol>
-		<li class="slide" id="comp1">
+		<li class="slide" id="comp7">
 			Use the Number object: <code class="prettyprint">var num = Number("1").</code>
 		</li>
-		<li class="slide" id="comp2">
+		<li class="slide" id="comp8">
 			Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10) //the second parm is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.</code>
 		</li>
-		<li class="slide" id="comp3">
+		<li class="slide" id="comp9">
 			If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <code class="prettyprint">var num = +&quot;3&quot;</code>.
 		</li>		
 	</ol>
@@ -374,7 +392,6 @@ myArray.shift() //removes the first element of the array and returns it</code></
 				<td>&nbsp;</td>
 				<td>NaN</td>
 			</tr>
-			</table>
 		</table>
 		
 		<table class="datatable">
@@ -402,10 +419,7 @@ myArray.shift() //removes the first element of the array and returns it</code></
 				<td>"yes"</td>
 				<td>&nbsp;</td>
 			</tr>
-			</table>
 		</table>
-		
-	
 </div>
 
 <div class="slide" id="andor">
@@ -497,17 +511,18 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	<h4>ColdFusion</h4>
 <pre><code class="prettyprint">for(var i = 1; i lte 100; i = i + 1){
 	//note i starts with 1 and the continue statement is less than or equal
-}</pre></code>
+}</code></pre>
 	<h4>JavaScript</h4>
 <pre><code class="prettyprint">for(var i = 0; i &lt; 100; i = i++){
 	//note i starts with 0 and the continue statment is less than
-}</pre></code>
+}</code></pre>
 </div>
 
 <div class="slide" id="foriinloops">
 	<h2>Loops</h2>
 	<h3>for-in loops</h3>
 	<p>In JavaScript you can loop through the properties of an object like you can loop through the keys of a Struct</p>
+	<p>**Warning**<br>When looping through an object using for-in you WILL get all of the objects properties AND all of the properites of its prototpye chain.</p>
 	<h3>ColdFusion</h3>
 <pre><code class="prettyprint">var myStruct = {foo = "Foo", bar = "Bar", baz = "Baz"};
 for(var myKey in myStruct){
@@ -517,7 +532,7 @@ for(var myKey in myStruct){
 <pre><code class="prettyprint">var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
 for(var myKey in myObj){
 	myVar = myObj[myKey];  
-}</pre></code>
+}</code></pre>
 <input type="button" value="Run" id="runforin">
 </div>
 
@@ -542,7 +557,7 @@ for(var myKey in myObj){
 	</ul>
 <div class="slide" id="loopscode1"><pre><code class="prettyprint">var len = myArray.length;
 //just like in ColdFusion, var your array index variable
-for(var i = 0; i < len; i++){
+for(var i = 0; i &lt; len; i++){
 	...  
 }</code></pre></div>
 </div>
@@ -562,14 +577,46 @@ for(var i = 0; i < len; i++){
 	</ul>
 </div>
 
+<div class="slide" id="objects1">
+	<h2>Objects</h2>
+	<p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
+	<pre><code class="prettyprint">myObject.foo; //Foo
+myObject["foo"]; //Foo</code></pre>
+</div>
+
+<div class="slide" id="objects2">
+	<h2>Objects</h2>
+	<p>Also similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method.</p>
+	<h3>ColdFusion</h3>
+	<pre><code class="prettyprint">structKeyExists(myStruct,"foo"); //true</code></pre>
+	<h3>JavaScript</h3>
+	<pre><code class="prettyprint">myObject.hasOwnProperty("foo"); //true</code></pre>
+</div>
+
+<div class="slide" id="objects4">
+	<h2>Constructor</h2>
+	<p class="slide" id="objects32">This is where things get a bit confusing because the "Objects" we've been creating using the object literal pattern {} don't really act like objects.</p>
+	<p class="slide" id="objects33">In order to create an object that acts like an object, also known as a Component or CFC in ColdFusion, we need to use a Constructor, which is a function.  Think of a constructor function as an Init() function in ColdFusion.</p>
+	<p class="slide" id="objects34">You create a new instance of an object by using the <code class="prettyprint">new</code> keyword on the constructor function.  You can think of using the new keyword on a constructor function similar to
+		using the <code class="prettyprint">new</code> keyword in ColdFusion 9, or <code class="prettyprint">createObject("myObj").init()</code> in earlier versions.</p>
+		
+	<div class="slide" id="objects35">
+	<pre><code class="prettyprint">//by convention constructor functions should start with a Capital Letter
+function RealObject(){ 
+	...		
+};
+
+var instanceOfRealObject = new RealObject();</code></pre></div>
+</div>
+
 <div class="slide" id="functions2">
 	<h2>Functions</h2>
 	<p>There are some important differences.</p>
 	<ul>
 		<li class="slide" id="fn4">There is ONLY function scope in JavaScript.</li>
 		<li class="slide" id="fn5">You can have unnamed, or anonymous functions in JavaScript.</li>
-		<li class="slide" id="fn5">There are two ways to create functions: statements and expressions.</li>
-		<li class="slide" id="fn6">Functions can be defined <i>inside</i> other functions.</li>
+		<li class="slide" id="fn6">There are two ways to create functions: statements and expressions.</li>
+		<li class="slide" id="fn7">Functions can be defined <i>inside</i> other functions.</li>
 	</ul>
 </div>
 
@@ -588,7 +635,58 @@ for(var i = 0; i < len; i++){
 </code></pre>		
 </div>
 
-<div class="slide" id="function4">
+<div class="slide" id="hoisting">
+	<h3>Hoisting</h3>
+	<p>There is one fundamental difference between function expressions and statements and that is the action hoisting.  Hoisting is when the JavaScript compiler takes a function or variable and moves it to the top of the current scope.</p>
+</div>
+
+<div class="slide" id="hoisting2">
+	<h2>Function Declaration Before Hoisting</h2>
+	<pre><code class="prettyprint">function hoistingExample(){
+		var firstVar;
+
+		firstVar = "";
+
+		var secondVar = "";
+
+		firstVar + secondVar;
+
+		var firstFun = function(){
+			//do something
+		}
+
+		function secondFunction(){
+			// do another thing
+		}
+	}
+</code></pre>
+</div>
+
+<div class="slide" id="hoisting3">
+	<h2>Function Declaration After Hoisting</h2>
+	<pre><code class="prettyprint">function hoistingExample(){
+		function secondFunction(){
+			// do another thing
+		}
+
+		var firstVar;
+		var secondVar;
+		var firstFun;
+
+		firstVar = "";
+
+		secondVar = "";
+
+		firstVar + secondVar;
+
+		firstFun = function(){
+			//do something
+		}
+	}
+</pre></code>
+</div>
+
+<div class="slide" id="function4">	
 	<h2>Function Arguments</h2>
 	<p>Just like in ColdFusion you can have named arguments and arguments that are outside of the named arguments.</p>
 	<p>Arguments in JavaScript are stored in an array-like object.  The "arguments" object has a length property but none of the other array methods.</p>
@@ -715,38 +813,6 @@ callTimer();</code></pre>
 	<pre><code class="prettyprint"><a href="http://localhost/test.cfm?section=object" target="_blank">myStruct</a> = {foo = &quot;foo&quot;, bar = &quot;bar&quot;, anotherStruct = {baz=&quot;baz&quot;, pez = &quot;pez&quot;}};</code></pre>
 	<h3>JavaScript</h3>
 	<pre><code class="prettyprint">myObject = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, anotherObject : {baz : &quot;Baz&quot;, pez = &quot;Pez&quot;}}; //this is called an object literal.  Its equal to new Object();</code></pre>
-</div>
-
-<div class="slide" id="objects1">
-	<h2>Objects</h2>
-	<p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
-	<pre><code class="prettyprint">myObject.foo; //Foo
-myObject["foo"]; //Foo</code></pre>
-</div>
-
-<div class="slide" id="objects2">
-	<h2>Objects</h2>
-	<p>Also similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method.</p>
-	<h3>ColdFusion</h3>
-	<pre><code class="prettyprint">structKeyExists(myStruct,"foo"); //true</code></pre>
-	<h3>JavaScript</h3>
-	<pre><code class="prettyprint">myObject.hasOwnProperty("foo"); //true</code></pre>
-</div>
-
-<div class="slide" id="objects4">
-	<h2>Constructor</h2>
-	<p class="slide" id="objects32">This is where things get a bit confusing because the "Objects" we've been creating using the object literal pattern {} don't really act like objects.</p>
-	<p class="slide" id="objects33">In order to create an object that acts like an object, also known as a Component or CFC in ColdFusion, we need to use a Constructor, which is a function.  Think of a constructor function as an Init() function in ColdFusion.</p>
-	<p class="slide" id="objects34">You create a new instance of an object by using the <code class="prettyprint">new</code> keyword on the constructor function.  You can think of using the new keyword on a constructor function similar to
-		using the <code class="prettyprint">new</code> keyword in ColdFusion 9, or <code class="prettyprint">createObject("myObj").init()</code> in earlier versions.</p>
-		
-	<div class="slide" id="objects35">
-	<pre><code class="prettyprint">//by convention constructor functions should start with a Capital Letter
-function RealObject(){ 
-	...		
-};
-
-var instanceOfRealObject = new RealObject();</code></pre></div>
 </div>
 
 <div class="slide" id="objects3">
@@ -950,7 +1016,7 @@ for(var myKey in anotherRealObject){
 	console.log(arguments);
 }
 whoAmI.call(&quot;Ryan&quot;,&quot;Hello World&quot;,undefined,{},[]);
-whoAmI.apply(&quot;Ryan&quot;,[&quot;Hello World&quot;,undefined,{},[]]);</pre></code>
+whoAmI.apply(&quot;Ryan&quot;,[&quot;Hello World&quot;,undefined,{},[]]);</code></pre>
 <input type="button" name="" value="Run" id="thisBtn2">
 </div>
 
@@ -1019,7 +1085,7 @@ myRobot = new Robot("FerbBot");
 	<p class="slide" id="digiweb">Scope In JavaScript: <a href="http://www.digital-web.com/articles/scope_in_javascript/">http://www.digital-web.com/articles/scope_in_javascript/</a></p>
 </div>
 
-<div class="slide" id="statementsTitle">
+<div class="slide" id="resourcesTitle">
 	<h1>Resources</h1>
 </div>
 
@@ -1035,7 +1101,7 @@ myRobot = new Robot("FerbBot");
 		<li>Nathan's Lessons <a href="http://nathansjslessons.appspot.com/" target="_blank">Interactive JavaScript Lessons</a></li>
 		<li>JSFiddle<a href="http://jsfiddle.net/" target="_blank">http://jsfiddle.net</a></li>
 		<li>This presentation of course, which is on <a href="https://github.com/bittersweetryan/javascript-for-coldfusion-devs" target="_blank">https://github.com/bittersweetryan/javascript-for-coldfusion-devs</a></li>
-		<li>Code Academy <a href-"http://www.codecademy.com/" target="_blank">http://www.codecademy.com/</a>
+		<li>Code Academy <a href="http://www.codecademy.com/" target="_blank">http://www.codecademy.com/</a>
 	</ul>
 	<p>However I'd be remiss if I left out Douglass Crockford's "<a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">JavaScript: The Good Parts".</a></p>
 </div>
