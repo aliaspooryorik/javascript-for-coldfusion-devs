@@ -87,6 +87,17 @@
 * prototype
 * augmenting native constructor functions
 
+##Common Design Patterns
+* module
+	* revealing module
+* observer
+	* commonly found in pub/sub libraries
+* prototype
+	* ECMAScript5 - use Object.create (IE 9+ native)
+	* Can shim (as shown in Crockford's The Good Parts)
+* decorator
+* Addi Osmani's Book 
+
 ###Unit Testing
 * very brief intro
 * TDD vs BDD
