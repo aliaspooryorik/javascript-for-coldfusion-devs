@@ -1099,8 +1099,31 @@ copiedArray[0] = &quot;Banana&quot;;</code></pre>
 	<h2>Decorator Pattern</h2>
 </div>
 
-<div class="slide" id="resourcesTitle">
-	<h1>Resources</h1>
+<div class="slide" id="designPatterns3">
+	<h2>Decorator Pattern</h2>
+</div>
+
+<div class="slide" id="designPatterns4">
+	<h2>Options</h2>
+	<p>The options pattern is very common in libraries and jQuery plugins</P>
+<pre><code class="prettyprint">$.fn.myPlugin = function(options){
+	//here we have the default options
+	var defaults = {
+		color: "blue",
+		height: "200px"
+	};
+	//check if options was passed in as an otject
+	if(typeOf options === 'object'){
+		//now merge the defaults and options objects, preserving the options passed in
+		//here the defaults will be overwritten by options if passed in
+		options = $.extend({},defaults,options)
+	}
+	else{
+		//if not options were passed in set the options to the defaults
+		options = defaults;
+	}
+}
+</code></pre>
 </div>
 
 <div class="slide" id="unitTesting">
@@ -1135,6 +1158,10 @@ copiedArray[0] = &quot;Banana&quot;;</code></pre>
 
 <div class="slide" id="unitTesting7">
 	<h2>Testing DOM & Fixtures</h2>
+</div>
+
+<div class="slide" id="resourcesTitle">
+	<h1>Resources</h1>
 </div>
 
 <div class="slide" id="resources">
