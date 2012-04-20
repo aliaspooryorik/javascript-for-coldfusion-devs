@@ -36,6 +36,10 @@
 
 <body class="deck-container" onload="prettyPrint()">
 
+<!-- 
+Title
+ -->
+
 <div class="slide" id="title-slide">
 	<ul>
 		<li>Check Microphone (make sure its not too close to your mouth)</li>
@@ -69,6 +73,11 @@
 }</code></pre>
 </div>
 
+
+<!-- 
+About me
+ -->
+
 <div class="slide" id="about-me">
 	<h2>About me</h2>
 	<ul>
@@ -90,6 +99,10 @@
 	</ul>
 </div>
 
+<!-- 
+Asumptions
+ -->
+
 <div class="slide" id="asumptions">
 	<h2>Asumptions</h2>
 	<ul>
@@ -106,6 +119,11 @@
 
 </div>
 
+
+<!-- 
+Cover
+ -->
+
 <div class="slide" id="what-well-cover">
 	<h2>What we'll cover</h2>
 	<ul>
@@ -121,24 +139,28 @@
 		<li class="slide" id="coverScopte">
 			<h3>Scope</h3>
 		</li>
-		<li class="slide" id="coverFunctions">
-			<h3>Functions</h3>
-		</li>
 		<li class="slide" id="coverInheritance">
 			<h3>Inheritance</h3>
 		</li>
 		<li class="slide" id="coverThis">
 			<h3>This</h3>
 		</li>
-		<li class="slide" id="coverThis">
+		<li class="slide" id="coverPatterns">
 			<h3>Common Design Patterns</h3>
 		</li>
 		<li class="slide" id="coverUnitTesting">
 			<h3>Testing</h3>
 		</li>
 	</ul>
-
 </div>
+
+<div class="slide" id="basicsTitle">
+	<h1>Lets Start With Some Basics</h1>
+</div>
+
+<!-- 
+Variables
+ -->
 
 <div class="slide" id="variablesTitle">
 	<h1>Variables</h1>
@@ -190,6 +212,10 @@ console.log(myOtherVar); //error
 	}
 </script>
 
+<!-- 
+Numbers
+ -->
+
 <div class="slide" id="variables3">
 	<h2>Numbers</h2>
 	<ul>
@@ -231,6 +257,11 @@ writedump(String.valueOf(result));</code></pre></p>
 		<li class="slide" id="na3">Use <code class="prettyprint">isNaN()</code> to test for NaN</li>
 	</ul>
 </div>
+
+
+<!-- 
+Arrays
+ -->
 
 <div class="slide" id="arraysTitle">
 	<h1>Arrays</h1>
@@ -303,7 +334,9 @@ function changeArray(theArray){
 	<p>Arrays are objects so they have methods:</p>
 		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //arrayLen() function in CFML, a property in JavaScript
 
-myArray.push("item 4") //arrayAppend in CFML
+myArray.push("item 4") //arrayAppend in CFML, myArray is changed
+
+myArray.concat(anotherArray) //adds two arrays together, returns a new array.  myArray unchanged.
 
 myArray.sort() //arraysort in CFML
 
@@ -313,6 +346,11 @@ myArray.pop() //removes the last element of the array and returns it
 
 myArray.shift() //removes the first element of the array and returns it</code></pre></div>
 </div>
+
+
+<!-- 
+Operators
+ -->
 
 <div class="slide" id="statementsTitle">
 	<h1>Operators</h1>
@@ -479,7 +517,7 @@ myFunc("andor2");
 	});
 </script>
 
-<div class="slide" id="andor3">
+<div class="slide" id="andor3div">
 	<h2>Logical</h2>
 	<h3>JavaScript</h3>
 	<p>Similar to the || operator the && operator returns the first operator if it is false, otherwise it returns the value of the second:</p>
@@ -522,12 +560,13 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	<h2>Loops</h2>
 	<h3>for-in loops</h3>
 	<p>In JavaScript you can loop through the properties of an object like you can loop through the keys of a Struct</p>
-	<p>**Warning**<br>When looping through an object using for-in you WILL get all of the objects properties AND all of the properites of its prototpye chain.</p>
+	<p>**Warning**</p>
+	<p>When looping through an object using for-in you will get all of the objects properties AND all of the properites of its prototpye chain.</p>
 	<h3>ColdFusion</h3>
 <pre><code class="prettyprint">var myStruct = {foo = "Foo", bar = "Bar", baz = "Baz"};
 for(var myKey in myStruct){
 	<a href="http://localhost/test.cfm?section=forin" target="_blank">myVar</a> = myStruct[key];
-}</pre></code>
+}</code></pre>
 	<h3>JavaScript</h3>
 <pre><code class="prettyprint">var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
 for(var myKey in myObj){
@@ -562,6 +601,10 @@ for(var i = 0; i &lt; len; i++){
 }</code></pre></div>
 </div>
 
+<!-- 
+Objects
+ -->
+
 <div class="slide" id="objectsTitle">
 	<h1>Objects</h1>
 </div>
@@ -575,6 +618,20 @@ for(var i = 0; i &lt; len; i++){
 	<pre><code class="prettyprint">myObject = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, anotherObject : {baz : &quot;Baz&quot;, pez = &quot;Pez&quot;}}; //this is called an object literal.  Its equal to new Object();</code></pre>
 </div>
 
+<div class="slide" id="objects7">
+	<h2>Objects</h2>
+	<p>When accessing properties from other properties in an object, use the <code>this</code> keyword.</p>
+	<pre><code class="prettyprint">​var myObj = {
+
+	name: "Homer",
+
+	sayHello: function(){
+		
+		console.log("Hello, " + this.name);    
+	}    
+};</code></pre>
+</div>
+
 <div class="slide" id="objects1">
 	<h2>Objects</h2>
 	<p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
@@ -584,11 +641,12 @@ myObject["foo"]; //Foo</code></pre>
 
 <div class="slide" id="objects2">
 	<h2>Objects</h2>
-	<p>Also similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method.</p>
+	<p>Similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method and the <code>in</code> operator.</p>
 	<h3>ColdFusion</h3>
 	<pre><code class="prettyprint">structKeyExists(myStruct,"foo"); //true</code></pre>
 	<h3>JavaScript</h3>
-	<pre><code class="prettyprint">myObject.hasOwnProperty("foo"); //true</code></pre>
+	<pre><code class="prettyprint">myObject.hasOwnProperty("foo"); //true (only searches current object)
+'foo' in myObject //true (this searches all the way up the inheritance tree)</code></pre>
 </div>
 
 <div class="slide" id="objects6">
@@ -609,6 +667,9 @@ for(var myKey in anotherRealObject){
 </div>
 
 <script type="text/javascript" charset="utf-8">
+	//fixme, this script breaks
+	RealObject = function(){};
+
 	var anotherRealObject = new RealObject();
 		
 	anotherRealObject.newFunction = function(){
@@ -655,6 +716,10 @@ for(var myKey in anotherRealObject){
 		}	
 	});
 </script>
+
+<!-- 
+Functions
+ -->
 
 <div class="slide" id="functionsTitle">
 	<h1>Functions</h1>
@@ -705,47 +770,45 @@ for(var myKey in anotherRealObject){
 <div class="slide" id="hoisting2">
 	<h2>Function Declaration Before Hoisting</h2>
 	<pre><code class="prettyprint">function hoistingExample(){
-		var firstVar;
+	var firstVar;
 
-		firstVar = "";
+	firstVar = "";
 
-		var secondVar = "";
+	var secondVar = "";
 
-		firstVar + secondVar;
+	firstVar + secondVar;
 
-		var firstFun = function(){
-			//do something
-		}
-
-		function secondFunction(){
-			// do another thing
-		}
+	var firstFun = function(){
+		//do something
 	}
-</code></pre>
+
+	function secondFunction(){
+		// do another thing
+	}
+}</code></pre>
 </div>
 
 <div class="slide" id="hoisting3">
 	<h2>Function Declaration After Hoisting</h2>
 	<pre><code class="prettyprint">function hoistingExample(){
-		function secondFunction(){
-			// do another thing
-		}
-
-		var firstVar;
-		var secondVar;
-		var firstFun;
-
-		firstVar = "";
-
-		secondVar = "";
-
-		firstVar + secondVar;
-
-		firstFun = function(){
-			//do something
-		}
+	function secondFunction(){
+		// do another thing
 	}
-</pre></code>
+
+	var firstVar;
+	var secondVar;
+	var firstFun;
+
+	firstVar = "";
+
+	secondVar = "";
+
+	firstVar + secondVar;
+
+	firstFun = function(){
+		//do something
+	}
+}</code></pre>
 </div>
 
 <div class="slide" id="function4">	
@@ -803,7 +866,7 @@ console.log(typeof function(){});
 <div class="slide" id="function6">
 	<h2>Function Arguments</h2>
 	<p>Hit the brakes!</p>
-	<div class="slide" id="fnArg1">
+	<div class="slide" id="checktype">
 		<pre><code class="prettyprint">
 console.log(typeof []); //object ?!? 
 </code></pre>
@@ -863,6 +926,10 @@ callTimer();</code></pre>
 		callTimer();
 	})
 </script>
+
+<!-- 
+This
+ -->
 
 <div class="slide" id="thisTitle">
 	<h1>This</h1>
@@ -989,6 +1056,9 @@ myRobot = new Robot("FerbBot");
 	<p class="slide" id="digiweb">Scope In JavaScript: <a href="http://www.digital-web.com/articles/scope_in_javascript/">http://www.digital-web.com/articles/scope_in_javascript/</a></p>
 </div>
 
+<!-- 
+Inheritence
+ -->
 
 <div class="slide" id="objects39">
 	<h2>Inheritence</h2>
@@ -1079,31 +1149,53 @@ copiedArray[0] = &quot;Banana&quot;;</code></pre>
 	});
 </script>
 
+<!-- 
+Design Patterns
+ -->
+
 <div class="slide" id="designPatterns1">
 	<h2>Some Common JavaScript Design Patterns</h2>
 </div>
 
 <div class="slide" id="designPatterns2">
 	<h2>Module Pattern</h2>
+	<p>The module pattern can be used to "hide" variables and functions.</p>
+	<pre><code class="prettyprint">var publicFunctions = (function(){
+    var name = "foobar";
+    
+    var private = function(){
+        console.log("i am private");                            
+    };
+    
+    var public = {
+        var sayHello = function(){
+            console.log("Hello, " + name);
+        }
+    };
+    
+    return public;
+}());
+
+publicFunctions.sayHello();</code></pre>
 </div>
 
 <div class="slide" id="designPatterns3">
 	<h2>Observer Pattern</h2>
 </div>
 
-<div class="slide" id="designPatterns3">
+<div class="slide" id="designPatterns4">
 	<h2>Prototype Pattern</h2>
 </div>
 
-<div class="slide" id="designPatterns3">
+<div class="slide" id="designPatterns5">
 	<h2>Decorator Pattern</h2>
 </div>
 
-<div class="slide" id="designPatterns3">
+<div class="slide" id="designPatterns6">
 	<h2>Decorator Pattern</h2>
 </div>
 
-<div class="slide" id="designPatterns4">
+<div class="slide" id="designPatterns7">
 	<h2>Options</h2>
 	<p>The options pattern is very common in libraries and jQuery plugins</P>
 <pre><code class="prettyprint">$.fn.myPlugin = function(options){
@@ -1125,6 +1217,10 @@ copiedArray[0] = &quot;Banana&quot;;</code></pre>
 }
 </code></pre>
 </div>
+
+<!-- 
+Testing
+ -->
 
 <div class="slide" id="unitTesting">
 	<h1>Unit Testing</h1>
@@ -1159,6 +1255,10 @@ copiedArray[0] = &quot;Banana&quot;;</code></pre>
 <div class="slide" id="unitTesting7">
 	<h2>Testing DOM & Fixtures</h2>
 </div>
+
+<!-- 
+Resources
+ -->
 
 <div class="slide" id="resourcesTitle">
 	<h1>Resources</h1>
@@ -1202,8 +1302,7 @@ copiedArray[0] = &quot;Banana&quot;;</code></pre>
 
 <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js">\x3C/script>')</script>
+<script src="jquery-1.7.min.js"></script>
 
 <!-- Deck Core and extensions -->
 <script src="core/deck.core.js"></script>
