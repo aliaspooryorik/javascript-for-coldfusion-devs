@@ -885,7 +885,7 @@ var is_array = function (value) {
 	<ul>
 		<li class="slide" id="cl1">Closures are functions that are enclosed, and returned within the context of another function.</li>
 		<li class="slide" id="cl2">The execution context of the outer function is saved wrapped around the inner function.</li>
-		<li class="slide" id="cl3">This effectively saves the "state" of the outer functions 853.</li>
+		<li class="slide" id="cl3">This effectively saves the "state" of the outer functions variables.</li>
 	</ul>
 </div>
 
@@ -1159,6 +1159,24 @@ Design Patterns
 
 <div class="slide" id="designPatterns2">
 	<h2>Module Pattern</h2>
+	<p>The module pattern can be used to "hide" variables and functions.</p>
+	<pre><code class="prettyprint">var publicFunctions = (function(){
+    var name = "foobar";
+    
+    var private = function(){
+        console.log("i am private");                            
+    };
+    
+    var public = {
+        var sayHello = function(){
+            console.log("Hello, " + name);
+        }
+    };
+    
+    return public;
+}());
+
+publicFunctions.sayHello();</code></pre>
 </div>
 
 <div class="slide" id="designPatterns3">
@@ -1284,8 +1302,7 @@ Resources
 
 <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js">\x3C/script>')</script>
+<script src="jquery-1.7.min.js"></script>
 
 <!-- Deck Core and extensions -->
 <script src="core/deck.core.js"></script>
