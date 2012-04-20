@@ -139,22 +139,23 @@ Cover
 		<li class="slide" id="coverScopte">
 			<h3>Scope</h3>
 		</li>
-		<li class="slide" id="coverFunctions">
-			<h3>Functions</h3>
-		</li>
 		<li class="slide" id="coverInheritance">
 			<h3>Inheritance</h3>
 		</li>
 		<li class="slide" id="coverThis">
 			<h3>This</h3>
 		</li>
-		<li class="slide" id="coverThis">
+		<li class="slide" id="coverPatterns">
 			<h3>Common Design Patterns</h3>
 		</li>
 		<li class="slide" id="coverUnitTesting">
 			<h3>Testing</h3>
 		</li>
 	</ul>
+</div>
+
+<div class="slide" id="basicsTitle">
+	<h1>Lets Start With Some Basics</h1>
 </div>
 
 <!-- 
@@ -333,7 +334,9 @@ function changeArray(theArray){
 	<p>Arrays are objects so they have methods:</p>
 		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //arrayLen() function in CFML, a property in JavaScript
 
-myArray.push("item 4") //arrayAppend in CFML
+myArray.push("item 4") //arrayAppend in CFML, myArray is changed
+
+myArray.concat(anotherArray) //adds two arrays together, returns a new array.  myArray unchanged.
 
 myArray.sort() //arraysort in CFML
 
@@ -514,7 +517,7 @@ myFunc("andor2");
 	});
 </script>
 
-<div class="slide" id="andor3">
+<div class="slide" id="andor3div">
 	<h2>Logical</h2>
 	<h3>JavaScript</h3>
 	<p>Similar to the || operator the && operator returns the first operator if it is false, otherwise it returns the value of the second:</p>
@@ -557,12 +560,13 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	<h2>Loops</h2>
 	<h3>for-in loops</h3>
 	<p>In JavaScript you can loop through the properties of an object like you can loop through the keys of a Struct</p>
-	<p>**Warning**<br>When looping through an object using for-in you WILL get all of the objects properties AND all of the properites of its prototpye chain.</p>
+	<p>**Warning**</p>
+	<p>When looping through an object using for-in you will get all of the objects properties AND all of the properites of its prototpye chain.</p>
 	<h3>ColdFusion</h3>
 <pre><code class="prettyprint">var myStruct = {foo = "Foo", bar = "Bar", baz = "Baz"};
 for(var myKey in myStruct){
 	<a href="http://localhost/test.cfm?section=forin" target="_blank">myVar</a> = myStruct[key];
-}</pre></code>
+}</code></pre>
 	<h3>JavaScript</h3>
 <pre><code class="prettyprint">var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
 for(var myKey in myObj){
@@ -614,6 +618,20 @@ Objects
 	<pre><code class="prettyprint">myObject = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, anotherObject : {baz : &quot;Baz&quot;, pez = &quot;Pez&quot;}}; //this is called an object literal.  Its equal to new Object();</code></pre>
 </div>
 
+<div class="slide" id="objects7">
+	<h2>Objects</h2>
+	<p>When accessing properties from other properties in an object, use the <code>this</code> keyword.</p>
+	<pre><code class="prettyprint">​var myObj = {
+
+	name: "Homer",
+
+	sayHello: function(){
+		
+		console.log("Hello, " + this.name);    
+	}    
+};</code></pre>
+</div>
+
 <div class="slide" id="objects1">
 	<h2>Objects</h2>
 	<p>You can access an object's properties just like you can in ColdFusion, with "dot" notation or with associative array notation</p>
@@ -623,11 +641,12 @@ myObject["foo"]; //Foo</code></pre>
 
 <div class="slide" id="objects2">
 	<h2>Objects</h2>
-	<p>Also similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method.</p>
+	<p>Similar to structKeyExists in ColdFusion JavaScript objects have a hasOwnProperty() method and the <code>in</code> operator.</p>
 	<h3>ColdFusion</h3>
 	<pre><code class="prettyprint">structKeyExists(myStruct,"foo"); //true</code></pre>
 	<h3>JavaScript</h3>
-	<pre><code class="prettyprint">myObject.hasOwnProperty("foo"); //true</code></pre>
+	<pre><code class="prettyprint">myObject.hasOwnProperty("foo"); //true (only searches current object)
+'foo' in myObject //true (this searches all the way up the inheritance tree)</code></pre>
 </div>
 
 <div class="slide" id="objects6">
@@ -648,6 +667,9 @@ for(var myKey in anotherRealObject){
 </div>
 
 <script type="text/javascript" charset="utf-8">
+	//fixme, this script breaks
+	RealObject = function(){};
+
 	var anotherRealObject = new RealObject();
 		
 	anotherRealObject.newFunction = function(){
@@ -748,47 +770,45 @@ Functions
 <div class="slide" id="hoisting2">
 	<h2>Function Declaration Before Hoisting</h2>
 	<pre><code class="prettyprint">function hoistingExample(){
-		var firstVar;
+	var firstVar;
 
-		firstVar = "";
+	firstVar = "";
 
-		var secondVar = "";
+	var secondVar = "";
 
-		firstVar + secondVar;
+	firstVar + secondVar;
 
-		var firstFun = function(){
-			//do something
-		}
-
-		function secondFunction(){
-			// do another thing
-		}
+	var firstFun = function(){
+		//do something
 	}
-</code></pre>
+
+	function secondFunction(){
+		// do another thing
+	}
+}</code></pre>
 </div>
 
 <div class="slide" id="hoisting3">
 	<h2>Function Declaration After Hoisting</h2>
 	<pre><code class="prettyprint">function hoistingExample(){
-		function secondFunction(){
-			// do another thing
-		}
-
-		var firstVar;
-		var secondVar;
-		var firstFun;
-
-		firstVar = "";
-
-		secondVar = "";
-
-		firstVar + secondVar;
-
-		firstFun = function(){
-			//do something
-		}
+	function secondFunction(){
+		// do another thing
 	}
-</pre></code>
+
+	var firstVar;
+	var secondVar;
+	var firstFun;
+
+	firstVar = "";
+
+	secondVar = "";
+
+	firstVar + secondVar;
+
+	firstFun = function(){
+		//do something
+	}
+}</code></pre>
 </div>
 
 <div class="slide" id="function4">	
@@ -846,7 +866,7 @@ console.log(typeof function(){});
 <div class="slide" id="function6">
 	<h2>Function Arguments</h2>
 	<p>Hit the brakes!</p>
-	<div class="slide" id="fnArg1">
+	<div class="slide" id="checktype">
 		<pre><code class="prettyprint">
 console.log(typeof []); //object ?!? 
 </code></pre>
@@ -865,7 +885,7 @@ var is_array = function (value) {
 	<ul>
 		<li class="slide" id="cl1">Closures are functions that are enclosed, and returned within the context of another function.</li>
 		<li class="slide" id="cl2">The execution context of the outer function is saved wrapped around the inner function.</li>
-		<li class="slide" id="cl3">This effectively saves the "state" of the outer functions variables.</li>
+		<li class="slide" id="cl3">This effectively saves the "state" of the outer functions 853.</li>
 	</ul>
 </div>
 
@@ -1145,19 +1165,19 @@ Design Patterns
 	<h2>Observer Pattern</h2>
 </div>
 
-<div class="slide" id="designPatterns3">
+<div class="slide" id="designPatterns4">
 	<h2>Prototype Pattern</h2>
 </div>
 
-<div class="slide" id="designPatterns3">
+<div class="slide" id="designPatterns5">
 	<h2>Decorator Pattern</h2>
 </div>
 
-<div class="slide" id="designPatterns3">
+<div class="slide" id="designPatterns6">
 	<h2>Decorator Pattern</h2>
 </div>
 
-<div class="slide" id="designPatterns4">
+<div class="slide" id="designPatterns7">
 	<h2>Options</h2>
 	<p>The options pattern is very common in libraries and jQuery plugins</P>
 <pre><code class="prettyprint">$.fn.myPlugin = function(options){
@@ -1264,7 +1284,7 @@ Resources
 
 <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
 <script>window.jQuery || document.write('<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js">\x3C/script>')</script>
 
 <!-- Deck Core and extensions -->
