@@ -334,7 +334,7 @@ function changeArray(theArray){
 
 <div class="slide" id="arrays2">
 	<h2>Arrays</h2>
-	<p>Arrays are objects so they have methods:</p>
+	<p>Arrays are objects so they have methods, here are a few you'll commonly see used in the whild: </p>
 		<div class="slide" id="arm1"><pre><code class="prettyprint">myArray.length //arrayLen() function in CFML
 
 myArray.push("item 4") //arrayAppend in CFML, myArray is changed
@@ -348,7 +348,7 @@ myArray.join(",") //combines elements into string, separated by argument
 <div class="slide" id="arrays3">
 	<h2>Arrays</h2>
 	<p>More methods:</p>
-		<div class="slide" id="arm1"><pre><code class="prettyprint">
+		<div id="arm1"><pre><code class="prettyprint">
 myArray.sort() //arraysort in CFML
 
 myArray.splice(1,2) //deletes 2 items from the array starting at position 1
@@ -677,11 +677,11 @@ myObject["foo" + "bar"]; //Foobar
 		
 'foo' in myObject //true (this searches all the way up the inheritance tree)</code></pre>
 </div>
-
+<!--
 <div class="slide" id="objects6">
 	<h2>Objects</h2>
 	<p>As shown in the for-in loop example you can use a for-in loop to loop through a objects properties.</p>
-	<p>However, theres one important thing to note, when you loop through an object you will be iterating through all of its properties AND all of the properties of its prototpye.</p>
+	<p>However, theres one important thing to note, when you loop through an object you will be iterating through all of its properties AND all of the properties of its prototpye (more on prototypes later).</p>
 	<pre><code class="prettyprint">var anotherRealObject = new RealObject(); //remember we added a function, iRule to the RealObjects prototpye
 
 anotherRealObject.newFunction = function(){
@@ -745,7 +745,7 @@ for(var myKey in anotherRealObject){
 		}	
 	});
 </script>
-
+-->
 <!-- 
 Functions
  -->
@@ -762,9 +762,11 @@ Functions
 		<li class="slide" id="fn1">Functions are first class citizens.</li>
 		<li class="slide" id="fn2">Arguments are type-less, it would be the same as having all arguments having <code class="prettyprint">type="any"</code>.</li>
 		<li class="slide" id="fn3">Arguments are passed in an array-like structure called arguments.</li>
+		<li class="slide" id="fn8">All functions return something!  If there is no <code class="prettyprint">return</code> statement a function will return the keyword <code class="prettyprint">undefined</code></li>
 	</ul>
 </div>
 
+<!--
 <div class="slide" id="functions2">
 	<h2>Functions</h2>
 	<p>There are some important differences.</p>
@@ -772,10 +774,10 @@ Functions
 		<li class="slide" id="fn4">There is ONLY function scope in JavaScript.</li>
 		<li class="slide" id="fn5">You can have unnamed, or anonymous functions in JavaScript.</li>
 		<li class="slide" id="fn6">There are two ways to create functions: statements and expressions.</li>
-		<li class="slide" id="fn7">Functions can be defined <i>inside</i> other functions.</li>
+		<li class="slide" id="fn7" style="text-decoration:line-through">Functions can be defined <i>inside</i> other functions.</li>
 	</ul>
 </div>
-
+-->
 <div class="slide" id="function3">
 	<h2>Creating Functions</h2>
 	<h3>Function Statement</h3>
@@ -792,7 +794,7 @@ Functions
 </div>
 
 <div class="slide" id="hoisting">
-	<h3>Hoisting</h3>
+	<h2>Hoisting</h2>
 	<p>There is one fundamental difference between function expressions and statements and that is the action hoisting.  Hoisting is when the JavaScript compiler takes a function or variable and moves it to the top of the current scope.</p>
 </div>
 
@@ -1079,6 +1081,70 @@ myRobot = new Robot("FerbBot");
 </script>
 
 <div class="slide" id="this5">
+<h2>This In Object Literals</h2>
+<p>In an object literal <code class="prettyprint">this</code> refers to the current object</p>
+<pre><code class="prettyprint">var myObj = {
+	name : &quot;Homer&quot;,
+
+	sayHello : function(){
+		console.log(&quot;Hello, &quot; + this.name);
+	}</code></pre>
+<input type="button" id="thisObjBtn" value="Run" />
+</div>
+
+<script type="text/javascript">
+var objThis = document.getElementById('thisObjBtn');
+var myObjThis = {
+	name : "Homer",
+
+	sayHello : function(){
+		console.log("Hello, " + this.name);
+	}
+}
+
+objThis.addEventListener('click',function(){
+	myObjThis.sayHello();
+});
+</script>
+
+<div class="slide" id="this6">
+	<h2>This and jQuery</h2>
+	<p>jQuery likes to normalize <code class="prettyprint">this</code> which can cause issues.</p>
+	<pre><code class="prettyprint">var myObj = function(){
+	name : "Bart"
+
+	makeAjaxCall : function(){
+
+		$.ajax({
+			success : function(){
+				console.log(this.name);
+			}
+		});
+	}
+}</code></pre>
+<input id="thisjQueryBtn" type="button" value="Run">
+</div>
+
+<div class="slide" id="this7">
+	<h2>This and jQuery</h2>
+	<p>There is an easy fix.</p>
+	<pre><code class="prettyprint">var myObj = function(){
+	name : "Bart"
+
+	makeAjaxCall : function(){
+		var self = this; //use lexical scoping to save a reference to this
+
+		$.ajax({
+			success : function(){
+				console.log(self.name);
+			}
+		});
+	}
+}</code></pre>
+<input id="thisjQueryBtn2" type="button" value="Run" />
+</div>
+
+<div class="slide" id="this8">
 	<h2>This</h2>
 	<p>For a much more comprehensive look at "this" and "function invocation" read:
 	<p class="slide" id="yehuda">Yehuda Kat's blog post: <a href="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/" target="_blank">http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/</a></p>
@@ -1183,7 +1249,7 @@ Design Patterns
  -->
 
 <div class="slide" id="designPatterns1">
-	<h2>Some Common JavaScript Design Patterns</h2>
+	<h2>Some Common JavaScript-centric Design Patterns</h2>
 </div>
 
 <div class="slide" id="designPatterns2">
@@ -1208,19 +1274,6 @@ Design Patterns
 publicFunctions.sayHello();</code></pre>
 </div>
 
-<div class="slide" id="designPatterns3">
-	<h2>Observer Pattern</h2>
-	<h4>AKA Publish/Subscribe</h4>
-</div>
-
-<div class="slide" id="designPatterns5">
-	<h2>Decorator Pattern</h2>
-</div>
-
-<div class="slide" id="designPatterns6">
-	<h2>Decorator Pattern</h2>
-</div>
-
 <div class="slide" id="designPatterns7">
 	<h2>Options</h2>
 	<p>The options pattern is very common in libraries and jQuery plugins</P>
@@ -1240,14 +1293,19 @@ publicFunctions.sayHello();</code></pre>
 		//if not options were passed in set the options to the defaults
 		options = defaults;
 	}
-}
-</code></pre>
+}</code></pre>
+</div>
+
+<div class="slide" id="designPatterns8">
+	<h2>Pub-Sub (AKA Observer)</h2>
+	fill in
 </div>
 
 <!-- 
 Testing
  -->
 
+<!--
 <div class="slide" id="unitTesting">
 	<h1>Unit Testing</h1>
 </div>
@@ -1281,7 +1339,7 @@ Testing
 <div class="slide" id="unitTesting7">
 	<h2>Testing DOM & Fixtures</h2>
 </div>
-
+-->
 <!-- 
 Resources
  -->
@@ -1297,7 +1355,7 @@ Resources
 		<li>Marijn Haverbeke's Eloquent JavaScript <a href="http://eloquentjavascript.net/contents.html" target="_blank">http://eloquentjavascript.net/contents.html</a></li>
 		<li>Mozilla's JavaScript Reference<a href="https://developer.mozilla.org/en/JavaScript/Reference" target="_blank">https://developer.mozilla.org/en/JavaScript/Reference</a></li>
 		<li>JavaScript Koans (shameless plug time)<a href="https://github.com/liammclennan/JavaScript-Koans" target="_blank">https://github.com/liammclennan/JavaScript-Koans</a></li>
-		<li>JavaScript Garden<a href="http://bIonsaiden.github.com/JavaScript-Garden/" target="_blank">http://bIonsaiden.github.com/JavaScript-Garden</a></li>
+		<li>JavaScript Garden<a href="http://bonsaiden.github.com/JavaScript-Garden/" target="_blank">http://bonsaiden.github.com/JavaScript-Garden/</a></li>
 		<li>AppendTo's excellent video lessons at: <a href="http://learn.appendto.com" target="_blank">http://learn.appendto.com</a></li>
 		<li>Nathan's Lessons <a href="http://nathansjslessons.appspot.com/" target="_blank">Interactive JavaScript Lessons</a></li>
 		<li>JSFiddle<a href="http://jsfiddle.net/" target="_blank">http://jsfiddle.net</a></li>
