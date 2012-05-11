@@ -1371,7 +1371,18 @@ publicFunctions.sayHello();</code></pre>
 
 <div class="slide" id="designPatterns8">
 	<h2>Pub-Sub (AKA Observer)</h2>
-	fill in
+	<p>This pattern you probabally already use every day.</p>
+	<pre><code class="prettyprint">​&lt;a href=&quot;#&quot; id=&quot;clickMe&quot;&gt;Observe Me&lt;/a&gt;</pre></code>
+<pre><code class="prettyprint">​//clickme's click event is the "publisher" 
+//the anonymous function parameters are the subscribers
+
+$(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
+	console.log(&quot;First Observable of click&quot;);
+});
+    
+$(&quot;#clickMe&quot;).on(&#39;click&#39;,function(){
+	console.log(&quot;Second Observable of click&quot;);
+});</code></pre>
 </div>
 
 <!-- 
