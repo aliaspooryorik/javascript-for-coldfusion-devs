@@ -1320,7 +1320,7 @@ Inheritence
 
 <div class="slide" id="inheritance1">
 	<h2>Inheritance</h2>
-	<p>JavaScript uses a prototypical inheritance model. You'll see a lot of libraries that try to mock classical inheritance.</p>
+	<p>JavaScript uses a prototypical inheritance model.</p>
 	<pre><code class="prettyprint">var Car = function(){
 };
 
@@ -1368,14 +1368,14 @@ var r8 = new R8();</code></pre>
 
 <div class="slide" id="inheritance2">
 	<h2>So what is a "Prototype"</h2>
-	<p>A prototype is just an object.</p>
+	<p>A prototype is just an object, constructor functions have a hidden link (exposed as __proto__ in some browsers) to an object that is it's prototype.</p>
 	<p>When an something tries to access an objects property it looks at the current object, if its not found it looks in that objects prototype, then that objects prototype.</p>
 	<p>JavaScript stops looking up the chain when it reaches Object.prototype</p>
 </div>
 
 <div class="slide" id="inheritance3">
 	<h2>Prototype's Members</h2>
-	<p>Adding to an object's prototype will add the properties to all instances of that prototype, even ones that are already created.</p>
+	<p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all instances.</p>
 	<pre><code class="prettyprint">function RealObject(name){ //note captial letter denotes that this is a consctructor function
 	this.name = name;
 };
