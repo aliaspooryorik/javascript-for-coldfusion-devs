@@ -953,7 +953,7 @@ var is_array = function (value) {
 
 <div class="slide" id="functionConstructor1">
 	<h2>Constructor Functions</h2>
-	<p>JavaScript has a special type of function called a <code class="prettyprint">Constrctor</code> function.</p>
+	<p>JavaScript has a special type of function called a <code class="prettyprint">Constructor</code> function.</p>
 	<ul class="slide">
 		<li class="slide" id="const1">By convention the first letter of a constructor should be a capital letter.</li>
 		<li class="slide" id="const2">Never use a constructor function without first using the <code class="prettyprint">new</code> keyword!</li>
@@ -1592,27 +1592,36 @@ protoPattBtn.addEventListener('click',function(){
 	<h2>Prototype</h2>
 	<p>This pattern is used very extensively in both jQuery and Backbone applications.</p>
 	<p>In fact when you create a jQuery plugin you are using this pattern, using <code class="prettyprint">jQuery.fn</code> as your prototype.</p>
-	<pre><code class="prettyprint">jQuery.fn.sayHello = function(){
-	console.log("Hello Ryan!");
-	return jQuery;
-};</code></pre>
-	<pre><code class="prettyprint">$("window").sayHello();</code></pre>
+	<p>jQuery and underscore.js have a function that helps with this pattern.</p>
+	<pre><code class="prettyprint">var mammal = {
+	hair : "brown",
+	breath : function(){}
+};
+
+var cat = $.extend(mammal,{
+	eyes: 2,
+	ears: 2
+});</code></pre>
 <input type="button" id="protoPattBtn2" value="Run">
 </div>
 
 <script type="text/javascript">
 	
-jQuery.fn.sayHello = function(){
-	console.log("Hello Ryan!");
-	return jQuery;
+var mammal = {
+		hair : "brown",
+		breath : function(){}
 };
+
+var cat = $.extend(mammal,{
+	eyes: 2,
+	ears: 2
+});
 
 var protoPattBtn2 = document.getElementById('protoPattBtn2');
 
 protoPattBtn2.addEventListener('click',function(){
-	$("window").sayHello();
+	console.log(cat);
 });
-
 </script>
 
 <div class="slide" id="designPatterns12">
