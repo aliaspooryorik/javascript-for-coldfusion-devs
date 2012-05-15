@@ -286,6 +286,7 @@ Arrays
 	<h3>JavaScript</h3>
 	<pre><code class="prettyprint">function createArray(){
 	var myArray = [&quot;Foo&quot;,&quot;Bar&quot;,&quot;Bazz&quot;];
+	console.log(myArray);
 	changeArray(myArray);
 	console.log(myArray);		
 }
@@ -305,6 +306,7 @@ function changeArray(theArray){
 	
 	function createArray(){
 	var myArray = ["Foo","Bar","Bazz"];
+	console.log(myArray);	
 	changeArray(myArray);
 	console.log(myArray);		
 }
@@ -384,7 +386,7 @@ Operators
 			Use the Number object: <code class="prettyprint">var num = Number("1").</code>
 		</li>
 		<li class="slide" id="comp8">
-			Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10) //the second parm is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.</code>
+			Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10)</code>.<br>The second parm is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.</code>
 		</li>
 		<li class="slide" id="comp9">
 			If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <code class="prettyprint">var num = +&quot;3&quot;</code>.
@@ -560,7 +562,7 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 	<h3>for-in loops</h3>
 	<p>In JavaScript you can loop through the properties of an object like you can loop through the keys of a Struct</p>
 	<p><strong style="color:red">Warning! </strong>
-	When looping through an object using for-in you will get all of the objects properties AND all of the properites of its prototpye chain.</p>
+	When looping through an object using for-in you will get all of the objects properties AND all of the properites up the prototpye chain.</p>
 	<h3>ColdFusion</h3>
 <pre><code class="prettyprint">var myStruct = {foo = "Foo", bar = "Bar", baz = "Baz"};
 for(var myKey in myStruct){
@@ -628,15 +630,30 @@ Objects
 	<h2>Objects</h2>
 	<p>When accessing properties from other properties in an object, use the <code>this</code> keyword.</p>
 	<pre><code class="prettyprint">​var myObj = {
-
-	name: "Homer",
-
+	name: &quot;Homer&quot;,
 	sayHello: function(){
-		
-		console.log("Hello, " + this.name);    
+	
+		console.log(&quot;Hello, &quot; + this.name);    
 	}    
-};</code></pre>
+}</code></pre>
+<input type="button" id="objThisPropBtn" value="Run">
 </div>
+
+<script type="text/javascript">
+	var objThisPropBtn = document.getElementById("objThisPropBtn");
+
+	var myObjProp = {
+		name: "Homer",
+		sayHello: function(){
+		
+			console.log("Hello, " + this.name);    
+		}    
+	}
+
+	objThisPropBtn.addEventListener('click',function(){
+		myObjProp.sayHello();
+	});
+</script>
 
 <div class="slide" id="objects1">
 	<h2>Objects</h2>
@@ -749,8 +766,7 @@ Functions
 	<ul>
 		<li class="slide" id="fn8">All functions return something!  If there is no <code class="prettyprint">return</code> statement a function will return the keyword <code class="prettyprint">undefined</code>.</li>
 		<li class="slide" id="fn9">There is only function scope in JavaScript.</li>
-		<li class="slide" id="fn10" style="text-decoration: line-through">Anonymous (unnamed) functions can be created and used like variables. (CF 10 Win!)</li>
-		<li class="slide" id="fn11">There is special type of function called a <code class="prettyprint">Constructor</code>.</li>
+		<li class="slide" id="fn10" ><span style="text-decoration: line-through">Anonymous (unnamed) functions can be created and used like variables.</span> (CF 10 Win!)</li>
 	</ul>
 </div>
 
@@ -799,7 +815,7 @@ Functions
 
 	var firstFun = function(){
 		//do something
-	}
+	};
 
 	function secondFunction(){
 		// do another thing
@@ -829,6 +845,38 @@ Functions
 	}
 }</code></pre>
 </div>
+
+<div class="slide" id="function20">	
+	<h2>Lexical Scoping</h2>
+	<p>Functions can be nested, each nested function has access to the scope of all its parents.</p>
+	<pre><code class="prettyprint">var lexical = function(){
+    var outer = &quot;outer&quot;;
+    
+    return function(){
+
+    	var inner = "inner"; //outer function does not have access
+		console.log(outer);
+    };
+}​;</code></pre>
+<input type="button" id="lexBtn" value="Run">
+</div>
+
+<script type="text/javascript">
+	var lexBtn = document.getElementById("lexBtn");
+
+	var lexical = function(){
+	    var outerVar = "outer";
+	    
+	    return function(){
+	    	console.log(outerVar);
+	    };
+	};
+
+	lexBtn.addEventListener('click',function(){
+		var lex = lexical();
+		lex();
+	});
+</script>
 
 <div class="slide" id="function4">	
 	<h2>Function Arguments</h2>
@@ -904,8 +952,8 @@ var is_array = function (value) {
 	<p>JavaScript has a special type of function called a <code class="prettyprint">Constrctor</code> function.</p>
 	<li class="slide" id="const1">By convention the first letter of a constructor should be a capital letter.</li>
 	<li class="slide" id="const2">Never use a constructor function without first using the <code class="prettyprint">new</code> keyword!</li>
-	<li class="slide" id="const3">Using the new keyword will create a new "scope" for the function.</li>
-	<li class="slide" id="const4">Using the new keyword will also create an inheritance tree. Without new a function will only inherit from the "Function constructor".</li>
+	<li class="slide" id="const3">Using the new keyword will create a new scope for the function.</li>
+	<li class="slide" id="const4">Using the new keyword will also create the inheritance tree. Without new a function will only inherit from the Function Constructor.</li>
 </div>
 
 <div class="slide" id="functionConstructor2">
