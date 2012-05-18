@@ -216,6 +216,12 @@ writedump(String.valueOf(result));</code></pre></p>
     </ul>
 </div>
 
+<div class="slide" id="variables31">
+    <h2>Numbers</h2>
+    <p>ColdFusion has the <code class="prettyprint">precisionEvaluate()</code> function to solve this issue</p>
+    <p>JavaScript has a BigNum library at <a href="https://github.com/jtobey/javascript-bignum" target="_blank">https://github.com/jtobey/javascript-bignum</a></p>
+</div>
+
 <script type="text/javascript" charset="utf-8">
     var numberButton = document.getElementById("numberButton");
     
@@ -1223,8 +1229,7 @@ objThis.addEventListener('click',function(){
         }
     }</code></pre>
 <input type="button" id="thisObj2Btn" value="Run" />
-<p class="slide">In nested functions <code class="prettyprint">this</code> referes back to Window object!</p>
-<p class="slide">We'll cover a common solution to this issue in the next section.</p>
+<p class="slide">In nested functions <code class="prettyprint">this</code> referes back to global namespace!</p>
 </div>
 
 <script type="text/javascript">
@@ -1330,7 +1335,7 @@ Inheritence
 
 <div class="slide" id="inheritance1">
     <h2>Inheritance</h2>
-    <p>JavaScript uses a prototypical inheritance model. You'll see a lot of libraries that try to mock classical inheritance.</p>
+    <p>JavaScript uses a prototypical inheritance model.</p>
     <pre><code class="prettyprint">var Car = function(){ };
 
 //add properties to Car's Prototype
