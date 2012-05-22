@@ -43,7 +43,7 @@ Title
 <div class="slide" id="title-slide">
     <ul>
         <li>Water</li>
-        <li>Turn off all chorme extentions</li>
+        <li>Turn off all chrome extentions</li>
         <li>ColdFusion Started</li>
         <li>Close Tabs</li>
         <li>Close IM's</li>
@@ -75,7 +75,7 @@ Title
                     <strong>Author</strong>: ColdFusion Koans, CFEvernote
                 </li>
                 <li>
-                    <strong>Contribuitor</strong>: JavaScript Koans, MXUnit
+                    <strong>Contributor</strong>: JavaScript Koans, MXUnit
                 </li>
             </ul>
         </li>
@@ -95,7 +95,7 @@ About me
         <h4>ColdFusion</h4>
         <pre><code class="prettyprint">var obj = {
     key = &quot;value&quot;,
-    foo = &quot;Bar&quot;,
+    foo = &quot;bar&quot;
 }</code></pre>
         <h4>JavaScript</h4>
         <pre><code class="prettyprint">var obj = {
@@ -133,7 +133,7 @@ Cover
 </div>
 
 <div class="slide" id="basicsTitle">
-    <h1>Lets Start With Some Basics</h1>
+    <h1>Let's Start With Some Basics</h1>
 </div>
 
 <!-- 
@@ -265,12 +265,12 @@ Arrays
 
 <div class="slide" id="arrays3">
 <h2>Arrays</h2>
-<p>Arrays in JavaScript are passed <strong>by reference</strong>. Arrays in ColdFuson are passed by <strong>value</strong>.</p>
+<p>Arrays in JavaScript are passed <strong>by reference</strong>. Arrays in ColdFusion are passed by <strong>value</strong>.</p>
     <h3>ColdFusion</h3>
     <pre><code class="prettyprint">&lt;cffunction name=&quot;createArray&quot;&gt;
     &lt;cfset var myArray = [&quot;Foo&quot;,&quot;Bar&quot;,&quot;Bazz&quot;]&gt;
 
-    &lt;cfdump var=&quot;#theArray#&quot;&gt;
+    &lt;cfdump var=&quot;#myArray#&quot;&gt;
     &lt;cfset <a href="http://localhost:8500/test.cfm?section=arrays" target="_blank">changeArray(myArray)</a>&gt;
     &lt;cfdump var=&quot;#myArray#&quot;&gt;
 &lt;/cffunction&gt;
@@ -396,7 +396,7 @@ Operators
             Use the Number object: <code class="prettyprint">var num = Number("1").</code>
         </li>
         <li class="slide" id="comp8">
-            Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10)</code>.<br>The second parm is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.
+            Use the parseInt function: <code class="prettyprint">var num = parseInt("01",10)</code>.<br>The second param is the radix.  For this presentation we'll just say always specify 10.  If you didn't specify the radix the string here would have been treated as an octal.
         </li>
         <li class="slide" id="comp9">
             If you are sure that the value you want to convert is an integer, you can use the "+" to convert a string to a number: <code class="prettyprint">var num = +&quot;3&quot;</code>.
@@ -469,7 +469,7 @@ Operators
     <h2>Logical Operators</h2>
     <p>Logical operators in JavaScript work slightly differnt than what you are used to in ColdFusion</p>
     <h3>CFML</h3>
-    <pre><code class="prettyprint">&lt;!-- short circuits and returns true if the first expression is true, if its false returns the value of the second expression.--&gt;
+    <pre><code class="prettyprint">&lt;!-- short circuits and returns true if the first expression is true, if it's false returns the value of the second expression.--&gt;
 &lt;cfif true OR len(&quot;hello&quot;)&gt; 
     &lt;cfset myVar = &quot;<a href="http://localhost:8500/test.cfm?section=andor" target="_blank">Hello World</a>" /&gt;
 &lt;/cfif&gt;
@@ -479,7 +479,7 @@ Operators
 <div class="slide" id="andor2">
     <h2>Logical Operators</h2>
     <h3>JavaScript OR Operator <code class="prettyprint">||</code></h3>
-    <pre><code class="prettyprint">//returns the value of the first expression if its true, otherwise returns the value of the second expression
+    <pre><code class="prettyprint">//returns the value of the first expression if it's true, otherwise returns the value of the second expression
 
 console.log(false || &quot;hello&quot;); 
 
@@ -501,7 +501,7 @@ console.log(&quot;world&quot; || &quot;foo&quot;);
 <div class="slide" id="andor3">
     <h2>Logical Operators</h2>
     <p>The || operator can be used to set default values like so:</p>
-    <pre><code class="prettyprint">var myFunc = functin(arg){
+    <pre><code class="prettyprint">var myFunc = function(arg){
 
     var myVal = document.getElementById(arg) || 
         document.createElement(&quot;div&quot;); //if no arg was passed in myVal is &quot;defaultValue&quot;
@@ -565,7 +565,7 @@ console.log(true &amp;&amp; &quot;Bar&quot;);
 }</code></pre>
     <h4>JavaScript</h4>
 <pre><code class="prettyprint">for(var i = 0; i &lt; 100; i = i++){
-    //note i starts with 0 and the continue statment is less than
+    //note i starts with 0 and the continue statement is less than
 }</code></pre>
 </div>
 
@@ -585,7 +585,7 @@ for(var myKey in myStruct){
     <h2>Loops</h2>
     <h3>for-in loops continued...</h3>
     <p><strong style="color:red">Warning! </strong>
-    When looping through an object using for-in you will get all of the objects properties AND all of the properites of its prototpye chain.</p>
+    When looping through an object using for-in you will get all of the objects properties AND all of the properites of its prototype chain.</p>
     <h3>JavaScript</h3>
 <pre><code class="prettyprint">var myObj = {foo : "Foo", bar : "Bar", baz : "Baz"};
 
@@ -611,7 +611,7 @@ for(var myKey in myObj){
     <h2>Loops</h2>
     <p>A few last things about loops</p>
     <ul>
-        <li class="slide" id="fi1">If you are looping through an array its a good idea to cache the size of the array in a variable.</li>
+        <li class="slide" id="fi1">If you are looping through an array it's a good idea to cache the size of the array in a variable.</li>
         <li class="slide" id="fi2">Make sure to "var" your iteration variable.</li>
     </ul>
 <div class="slide" id="loopscode1"><pre><code class="prettyprint">var len = myArray.length;
@@ -635,7 +635,7 @@ Objects
     <h3>ColdFusion</h3>
     <pre><code class="prettyprint"><a href="http://localhost:8500/test.cfm?section=object" target="_blank">myStruct</a> = {foo = &quot;foo&quot;, bar = &quot;bar&quot;, anotherStruct = {baz=&quot;baz&quot;, pez = &quot;pez&quot;}};</code></pre>
     <h3>JavaScript</h3>
-    <pre><code class="prettyprint">myObject = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, anotherObject : {baz : &quot;Baz&quot;, pez = &quot;Pez&quot;}}; //this is called an object literal.  Its equal to new Object();</code></pre>
+    <pre><code class="prettyprint">myObject = {foo : &quot;Foo&quot;, bar : &quot;Bar&quot;, anotherObject : {baz : &quot;Baz&quot;, pez = &quot;Pez&quot;}}; //this is called an object literal.  It's equal to new Object();</code></pre>
 </div>
 
 <div class="slide" id="objects7">
@@ -1108,7 +1108,7 @@ This
     <p>What happened in the function call?  Why did this point to window and not the function?</p>
     <p class="slide">In order to explain we must understand what "this" means in JavaScript.  This refers to the <strong>current execution context.</strong></p>
     <p class="slide">When we called the myFunc function from within the object, the object was the current execution context.</p>
-    <p class="slide">When we called myFun() from the root of the script tag, the window object was the current execution context</p>
+    <p class="slide">When we called myFunc() from the root of the script tag, the window object was the current execution context</p>
     </div>
 </div>
 
@@ -1382,7 +1382,7 @@ var r8 = new R8();</code></pre>
 <div class="slide" id="inheritance3">
     <h2>Prototype's Members</h2>
     <p>Adding to an object's prototype link is "live".  This means that properties added to a prototype are immediately accessable by all instances.</p>
-    <pre><code class="prettyprint">function RealObject(name){ //note captial letter denotes that this is a consctructor function
+    <pre><code class="prettyprint">function RealObject(name){ //note captial letter denotes that this is a constructor function
     this.name = name;
 };
 
@@ -1423,8 +1423,8 @@ console.log(anotherOfRealObject.iRule());</code></pre>
 <div class="slide" id="objects9">
     <h2>Prototype on native Objects</h2>
     <p>You can also change the prototypes of the native objects like Object or Array</p>
-    <p>Since there is no "deep copy" method availabe to arryas, lets add one.</p>
-    <p><strong>Just becuase you can, doesn't mean you should!</strong></p>
+    <p>Since there is no "deep copy" method available to arrays, lets add one.</p>
+    <p><strong>Just because you can, doesn't mean you should!</strong></p>
     <pre><code class="prettyprint">Array.prototype.deepCopy = function(){
     return this.slice(); //this refers to the array object.  
 }
@@ -1567,7 +1567,7 @@ optionsBtn.addEventListener('click',function(){
 
 <div class="slide" id="designPatterns8">
     <h2>Pub-Sub (AKA Observer)</h2>
-    <p>This pattern you probabally already use every day.</p>
+    <p>This pattern you probably already use every day.</p>
     <pre><code class="prettyprint">​&lt;a href=&quot;#&quot; id=&quot;clickMe&quot;&gt;Observe Me&lt;/a&gt;</code></pre>
 <pre><code class="prettyprint">​//clickme's click event is the "publisher" 
 //the anonymous function parameters are the subscribers
@@ -1686,7 +1686,7 @@ Resources
         <li>JSFiddle <a href="http://jsfiddle.net/" target="_blank">http://jsfiddle.net</a></li>
         <li>This presentation of course, which is on <a href="http://bittersweetryan.github.com/javascript-for-coldfusion-devs" target="_blank">https://github.com/bittersweetryan/javascript-for-coldfusion-devs</a></li>
     </ul>
-    <p>However I'd be remiss if I left out Douglass Crockford's "<a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">JavaScript: The Good Parts</a>".</p>
+    <p>However I'd be remiss if I left out Douglas Crockford's "<a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">JavaScript: The Good Parts</a>".</p>
 </div>
 
 <div class="slide" id="giveaway">
